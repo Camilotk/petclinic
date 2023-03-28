@@ -3,7 +3,12 @@ package br.com.metaway.petshop.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotEmpty;
-
+/**
+ * Simple JavaBean domain object adds a name property to BaseEntity.
+ * 
+ * @author cazevedo
+ *
+ */
 @MappedSuperclass
 public class NamedEntity extends Entity {
 	@Column(name = "name")
