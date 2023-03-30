@@ -1,7 +1,9 @@
 package br.com.metaway.petshop.repositories.implementation;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.aspectj.lang.annotation.SuppressAjWarnings;
 import org.springframework.dao.DataAccessException;
@@ -21,8 +23,8 @@ public class RaceRepositoryImpl implements RaceRepository {
 	private EntityManager em;
 
 	@Override
-	public Race findById(int id) throws DataAccessException {
-		return this.em.find(Race.class, id);
+	public Optional<Race> findById(BigInteger id) throws DataAccessException {
+		return Optional.ofNullable(this.em.find(Race.class, id));
 	}
 
 	@SuppressAjWarnings("unchecked")
