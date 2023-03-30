@@ -23,6 +23,7 @@ com credenciais:
 | http://localhost:8080/races        | GET  | Recebe todas as raças de Pet    |
 | http://localhost:8080/races/\{id\} | GET  | Recebe o Pet com \{id\}         |
 | http://localhost:8080/races        | POST | Cria um novo Pet (requisição)   |
+| http://localhost:8080/races/\{id\} | PUT  | Atualiza um Pet (requisição)    |
 
 ## Requisições POST
 
@@ -35,6 +36,18 @@ Headers:
 Body:
 {
     "description": "Labrador Retriever"
+}
+```
+
+### Atualizar o registro de uma Raça
+```
+URL: http://localhost:8080/races/1
+Method: PUT
+Headers: 
+    Content-Type: application/json
+Body:
+{
+    "description": "Collie"
 }
 ```
 
