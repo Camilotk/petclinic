@@ -1,4 +1,4 @@
-package br.com.metaway.petshop.model;
+package br.com.metaway.petshop.models;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

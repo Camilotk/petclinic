@@ -1,7 +1,8 @@
-package br.com.metaway.petshop.model;
+package br.com.metaway.petshop.models;
 
 import jakarta.persistence.Column;
 
+@jakarta.persistence.Entity
 public class Race extends Entity {
 	@Column(name="description")
 	private String description;
