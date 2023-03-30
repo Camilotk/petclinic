@@ -1,6 +1,8 @@
 package br.com.metaway.petshop.repositories;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
 
@@ -8,7 +10,7 @@ import br.com.metaway.petshop.models.Race;
 
 public interface RaceRepository {
 	
-	Race findById(int id) throws DataAccessException;
+	Optional<Race> findById(BigInteger id) throws DataAccessException;
 	
 	List<Race> findAll() throws DataAccessException;
 	
