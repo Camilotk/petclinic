@@ -14,7 +14,7 @@ import jakarta.persistence.MappedSuperclass;
  *
  */
 @MappedSuperclass
-public class Entity {
+public class BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected BigInteger id;
