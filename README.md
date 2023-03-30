@@ -20,8 +20,9 @@ com credenciais:
 
 | Link | Verbo HTTP | O que faz? |
 | :--  | :-:        | :-         |
-| http://localhost:8080/races | GET  | Recebe todas as raças de Pet |
-| http://localhost:8080/races | POST | Cria um novo Pet (requisição)   |
+| http://localhost:8080/races        | GET  | Recebe todas as raças de Pet    |
+| http://localhost:8080/races/\{id\} | GET  | Recebe o Pet com \{id\}         |
+| http://localhost:8080/races        | POST | Cria um novo Pet (requisição)   |
 
 ## Requisições POST
 
