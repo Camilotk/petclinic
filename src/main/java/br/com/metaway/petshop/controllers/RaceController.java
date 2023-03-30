@@ -1,11 +1,14 @@
 package br.com.metaway.petshop.controllers;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +34,16 @@ public class RaceController {
 	public ResponseEntity<List<Race>> getAll() {
 		List<Race> races = this.repository.findAll();
 		return ResponseEntity.ok(races);
-		
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Race> getById(@PathVariable BigInteger id) {
+	    Optional<Race> race = this.repository.findById(id);
+	    if (race.isPresent()) {
+	        return ResponseEntity.ok(race.get());
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
 	}
 
 }
