@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotEmpty;
  *
  */
 @MappedSuperclass
-public class NamedEntity extends Entity {
+public class NamedEntity extends BaseEntity {
 	@Column(name = "name")
 	@NotEmpty
 	private String name;

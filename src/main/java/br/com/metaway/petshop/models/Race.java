@@ -1,9 +1,10 @@
 package br.com.metaway.petshop.models;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
-@jakarta.persistence.Entity
-public class Race extends Entity {
+@Entity
+public class Race extends BaseEntity {
 	@Column(name="description")
 	private String description;
 
