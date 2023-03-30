@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,17 @@ public class RaceController {
 	        existingRace.setDescription(updatedRace.getDescription());
 	        Race savedRace = this.repository.save(existingRace);
 	        return ResponseEntity.ok(savedRace);
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
+	    Optional<Race> race = this.repository.findById(id);
+	    if (race.isPresent()) {
+	        this.repository.delete(race.get());
+	        return ResponseEntity.noContent().build();
 	    } else {
 	        return ResponseEntity.notFound().build();
 	    }
