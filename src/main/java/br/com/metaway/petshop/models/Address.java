@@ -2,6 +2,7 @@ package br.com.metaway.petshop.models;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -10,6 +11,7 @@ import jakarta.validation.constraints.Size;
 public class Address extends BaseEntity {
 	
 	@NotEmpty
+	@Column(name = "address_line", nullable = false)
 	private String addressLine;
     
 	@NotEmpty
@@ -26,8 +28,10 @@ public class Address extends BaseEntity {
     
 	@NotEmpty
 	@Size(max=20)
+	@Column(name = "zip_code", nullable = false)
 	private String zipCode;
     
+	@Column(name = "additional_information")
 	private String additionalInformation;
     
 	public String getAddressLine() {
