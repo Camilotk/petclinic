@@ -14,13 +14,15 @@
 - [x] Address Repository
 - [x] Address RepositoryImpl
 - [x] Address Controller
+- [ ] Implement JWT Authentication with Spring Security
+- [ ] Implement Role Based Authentication
 - [ ] Pet Migration
 - [ ] Pet Model
 - [ ] Pet Repository
 - [ ] Pet RepositoryImpl
 - [ ] Pet Controller
-- [ ] Implement JWT Authentication with Spring Security
-- [ ] Implement Role Based Authentication
+- [ ] Migrate from H2 to PostgreSQL in Main
+- [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
 - [ ] Unit Test for Race
 - [ ] Unit Test for Adress
