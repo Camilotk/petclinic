@@ -1,0 +1,28 @@
+- [x] Race Model
+- [x] Race Repository
+- [x] Race RepositoryImpl
+- [x] Race Controller
+- [x] Address Model
+- [x] Address Repository
+- [x] Address RepositoryImpl
+- [x] Address Controller
+- [ ] Pet Model
+- [ ] Pet Repository
+- [ ] Pet RepositoryImpl
+- [ ] Pet Controller
+- [ ] User Model
+- [ ] User Repository
+- [ ] User RepositoryImpl
+- [ ] User Controller
+- [ ] Contact Model
+- [ ] Contact Repository
+- [ ] Contact RepositoryImpl
+- [ ] Contact Controller
+- [ ] Client Model
+- [ ] Client Repository
+- [ ] Client RepositoryImpl
+- [ ] Client Controller
+- [ ] Consult Model
+- [ ] Consult Repository
+- [ ] Consult RepositoryImpl
+- [ ] Consult Controller
