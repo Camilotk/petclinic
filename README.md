@@ -18,6 +18,8 @@ com credenciais:
 
 ## Rotas
 
+### Raças
+
 | Link | Verbo HTTP | O que faz? |
 | :--  | :-:        | :-         |
 | http://localhost:8080/races        | GET    | Recebe todas as raças de Pet          |
@@ -25,6 +27,16 @@ com credenciais:
 | http://localhost:8080/races        | POST   | Cria uma Raça de Pet (requisição)     |
 | http://localhost:8080/races/\{id\} | PUT    | Atualiza uma Raça de Pet (requisição) |
 | http://localhost:8080/races/\{id\} | DELETE | Deleta uma Raça de Pet                |
+
+### Endereços
+
+| Link | Verbo HTTP | O que faz? |
+| :--  | :-:        | :-         |
+| http://localhost:8080/addresses        | GET    | Recebe todas os endereços         |
+| http://localhost:8080/addresses/\{id\} | GET    | Recebe um endereço com \{id\}     |
+| http://localhost:8080/addresses        | POST   | Cria um endereço (requisição)     |
+| http://localhost:8080/addresses/\{id\} | PUT    | Atualiza um endereço (requisição) |
+| http://localhost:8080/addresses/\{id\} | DELETE | Deleta uma endereço               |
 
 
 ## Requisições POST
