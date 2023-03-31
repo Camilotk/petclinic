@@ -53,3 +53,37 @@ Body:
 }
 ```
 
+### Criar um novo registro de Endereço
+```
+URL: POST /addresses
+Headers:
+	Content-Type: application/json
+Body:
+{
+	"addressLine": "123 Main St",
+	"avenue": "Central",	
+	"city": "Anytown",
+	"state": "CA",
+	"country": "USA",
+	"zipCode": "12345"
+}
+```
+
+### Atualizar o registro de um Endereço
+
+```
+URL: PUT /addresses/1
+Headers:
+	Content-Type: application/json
+Body:
+{
+	"addressLine": "123 Main St",
+	"avenue": "Central",
+	"city": "Anytown",
+	"state": "CA",
+	"country": "USA",
+	"zipCode": "12345",
+	"additionalInformation": "Suite 100, enter through the back door."
+}
+```
+
