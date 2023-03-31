@@ -1,11 +1,20 @@
+- [x] Create the Template on Spring Initilzr
+- [x] Add and update .gitignore
+- [x] Add README
+- [x] Setup Database
+- [x] Add Root Controller
 - [x] Race Model
 - [x] Race Repository
 - [x] Race RepositoryImpl
 - [x] Race Controller
+- [x] Add Migrations with Flyway
+- [x] Race Migration
+- [x] Address Migration
 - [x] Address Model
 - [x] Address Repository
 - [x] Address RepositoryImpl
 - [x] Address Controller
+- [ ] Pet Migration
 - [ ] Pet Model
 - [ ] Pet Repository
 - [ ] Pet RepositoryImpl
@@ -16,18 +25,22 @@
 - [ ] Unit Test for Race
 - [ ] Unit Test for Adress
 - [ ] Unit Test for Pet
+- [ ] User Migration
 - [ ] User Model
 - [ ] User Repository
 - [ ] User RepositoryImpl
 - [ ] User Controller
+- [ ] Contact Migration
 - [ ] Contact Model
 - [ ] Contact Repository
 - [ ] Contact RepositoryImpl
 - [ ] Contact Controller
+- [ ] Client Migration
 - [ ] Client Model
 - [ ] Client Repository
 - [ ] Client RepositoryImpl
 - [ ] Client Controller
+- [ ] Consult Migration
 - [ ] Consult Model
 - [ ] Consult Repository
 - [ ] Consult RepositoryImpl
