@@ -10,6 +10,12 @@
 - [ ] Pet Repository
 - [ ] Pet RepositoryImpl
 - [ ] Pet Controller
+- [ ] Implement JWT Authentication with Spring Security
+- [ ] Implement Role Based Authentication
+- [ ] Write Unit Tests with JUnit 7
+- [ ] Unit Test for Race
+- [ ] Unit Test for Adress
+- [ ] Unit Test for Pet
 - [ ] User Model
 - [ ] User Repository
 - [ ] User RepositoryImpl
@@ -26,3 +32,9 @@
 - [ ] Consult Repository
 - [ ] Consult RepositoryImpl
 - [ ] Consult Controller
+- [ ] Add Swagger Documentation
+- [ ] Add endpoint root in RootController to Swagger
+- [ ] Containerize in Docker
+- [ ] Add Metrics
+- [ ] Add CI
+- [ ] Deploy
