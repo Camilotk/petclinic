@@ -14,7 +14,8 @@
 - [x] Address Repository
 - [x] Address RepositoryImpl
 - [x] Address Controller
-- [x] Implement JWT Authentication with Spring Security
+- [x] Migrate from H2 to PostgreSQL in Main
+- [ ] Implement JWT Authentication with Spring Security
 - [ ] Implement Role Based Authentication
 - [ ] User Migration
 - [ ] User Model
@@ -36,7 +37,6 @@
 - [ ] Pet Repository
 - [ ] Pet RepositoryImpl
 - [ ] Pet Controller
-- [ ] Migrate from H2 to PostgreSQL in Main
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
 - [ ] Unit Test for Race
