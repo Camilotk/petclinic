@@ -14,7 +14,7 @@
 - [x] Address Repository
 - [x] Address RepositoryImpl
 - [x] Address Controller
-- [ ] Implement JWT Authentication with Spring Security
+- [x] Implement JWT Authentication with Spring Security
 - [ ] Implement Role Based Authentication
 - [ ] Pet Migration
 - [ ] Pet Model
