@@ -1,15 +1,18 @@
 spring:
     datasource:
       driver-class-name: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:32768/jwt-security
+      url: jdbc:postgresql://localhost:32768/petshop
       username: postgres
       password: postgrespw
     jpa:
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: update
       show-sql: true
       properties:
         hibernate:
           format_url: true
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect
+    flyway:
+      locations: classpath:db/migration
+      validateOnMigrate: true
