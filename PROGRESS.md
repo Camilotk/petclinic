@@ -15,13 +15,13 @@
 - [x] Address RepositoryImpl
 - [x] Address Controller
 - [x] Migrate from H2 to PostgreSQL in Main
-- [ ] Implement JWT Authentication with Spring Security
-- [ ] Implement Role Based Authentication
-- [ ] User Migration
-- [ ] User Model
-- [ ] User Repository
-- [ ] User RepositoryImpl
-- [ ] User Controller
+- [x] Implement JWT Authentication with Spring Security
+- [x] Implement Role Based Authentication
+- [x] User Migration
+- [x] User Model
+- [x] User Repository
+- [x] User RepositoryImpl
+- [x] User Controller
 - [ ] Contact Migration
 - [ ] Contact Model
 - [ ] Contact Repository
