@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthenticationController {
 	
-	// public final AuthenticationService service;
+	public final AuthenticationService service;
 	
 	
 }
