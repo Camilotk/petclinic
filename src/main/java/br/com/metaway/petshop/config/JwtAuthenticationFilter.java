@@ -2,6 +2,7 @@ package br.com.metaway.petshop.config;
 
 import java.io.IOException;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+	
+	private final JwtService jwtService;
 
 	// Execute Filter
 	@Override
@@ -36,6 +39,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		
 		// get Header JWT info skipping "Bearer "
 		jwt = authHeader.substring(7);
+		userEmail = jwtService.extractUsername(jwt);
+		
+		
+		// If JWT Token extracted email exists AND user is not authenticated
+		if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			// TODO: Validate Token
+		}
 		
 	}
 
