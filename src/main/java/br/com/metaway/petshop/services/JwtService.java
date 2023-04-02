@@ -1,4 +1,4 @@
-package br.com.metaway.petshop.config;
+package br.com.metaway.petshop.services;
 
 import java.security.Key;
 import java.util.Date;
