@@ -22,6 +22,7 @@
 - [x] User Repository
 - [x] User RepositoryImpl
 - [x] User Controller
+- [ ] Add Migration for ADM User 
 - [ ] Contact Migration
 - [ ] Contact Model
 - [ ] Contact Repository
@@ -47,6 +48,7 @@
 - [ ] Consult Repository
 - [ ] Consult RepositoryImpl
 - [ ] Consult Controller
+- [ ] Configure Auth for USER and ADMIN roles
 - [ ] Add Swagger Documentation
 - [ ] Add endpoint root in RootController to Swagger
 - [ ] Containerize in Docker
