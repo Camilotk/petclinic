@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.metaway.petshop.services.AuthenticationService;
+import br.com.metaway.petshop.web.AuthenticationRequest;
 import br.com.metaway.petshop.web.AuthenticationResponse;
 import br.com.metaway.petshop.web.RegisterRequest;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,13 @@ public class AuthenticationController {
 	@PostMapping("/register")
 	public ResponseEntity<AuthenticationResponse> register(
 			 @RequestBody RegisterRequest request) {
-		return ResponseEntity.ok(service);
+		// return ResponseEntity.ok(service);
+	}
+	
+	@PostMapping("/authenticate")
+	public ResponseEntity<AuthenticationResponse> authenticate (
+			 @RequestBody AuthenticationRequest request) {
+		// return ResponseEntity.ok(service);
 	}
 	
 	
