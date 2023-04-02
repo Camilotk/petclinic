@@ -1,5 +1,14 @@
 package br.com.metaway.petshop.web;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationResponse {
-	// TODO: Make Response Object
+	private String token; 
 }
