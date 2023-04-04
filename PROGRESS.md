@@ -22,17 +22,17 @@
 - [x] User Repository
 - [x] User RepositoryImpl
 - [x] User Controller
-- [ ] Add Migration for ADM User 
+- [x] Add Migration for ADM User 
 - [ ] Contact Migration
 - [ ] Contact Model
 - [ ] Contact Repository
 - [ ] Contact RepositoryImpl
 - [ ] Contact Controller
-- [ ] Client Migration
-- [ ] Client Model
-- [ ] Client Repository
-- [ ] Client RepositoryImpl
-- [ ] Client Controller
+- [x] Client Migration
+- [x] Client Model
+- [x] Client Repository
+- [x] Client RepositoryImpl
+- [x] Client Controller
 - [ ] Pet Migration
 - [ ] Pet Model
 - [ ] Pet Repository

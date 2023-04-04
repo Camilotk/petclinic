@@ -11,18 +11,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import br.com.metaway.petshop.repositories.UserRepository;
+import br.com.metaway.petshop.repositories.ClientRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfiguration {
-	private final UserRepository repository;
+	private final ClientRepository repository;
 	
 	 @Bean
 	  public UserDetailsService userDetailsService() {
-	    return username -> repository.findByEmail(username)
-	        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	    return cpf -> {
+	    	System.out.println("CPF: " + cpf);
+	    	return repository.findByCpf(cpf).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	    	};
 	  }
 
 	  @Bean
