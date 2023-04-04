@@ -23,11 +23,11 @@
 - [x] User RepositoryImpl
 - [x] User Controller
 - [x] Add Migration for ADM User 
-- [ ] Contact Migration
-- [ ] Contact Model
-- [ ] Contact Repository
-- [ ] Contact RepositoryImpl
-- [ ] Contact Controller
+- [x] Contact Migration
+- [x] Contact Model
+- [x] Contact Repository
+- [x] Contact RepositoryImpl
+- [x] Contact Controller
 - [x] Client Migration
 - [x] Client Model
 - [x] Client Repository
@@ -38,16 +38,16 @@
 - [ ] Pet Repository
 - [ ] Pet RepositoryImpl
 - [ ] Pet Controller
-- [ ] Add Test Database as H2
-- [ ] Write Unit Tests with JUnit 7
-- [ ] Unit Test for Race
-- [ ] Unit Test for Adress
-- [ ] Unit Test for Pet
 - [ ] Consult Migration
 - [ ] Consult Model
 - [ ] Consult Repository
 - [ ] Consult RepositoryImpl
 - [ ] Consult Controller
+- [ ] Add Test Database as H2
+- [ ] Write Unit Tests with JUnit 7
+- [ ] Unit Test for Race
+- [ ] Unit Test for Adress
+- [ ] Unit Test for Pet
 - [ ] Configure Auth for USER and ADMIN roles
 - [ ] Add Swagger Documentation
 - [ ] Add endpoint root in RootController to Swagger
