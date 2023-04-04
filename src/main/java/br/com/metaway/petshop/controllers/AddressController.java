@@ -39,7 +39,6 @@ public class AddressController {
 	@GetMapping
 	public ResponseEntity<List<Address>> getAll() {
 		List<Address> address = this.repository.findAll();
-		System.out.println(address);
 		return ResponseEntity.ok(address);
 	}
 	
