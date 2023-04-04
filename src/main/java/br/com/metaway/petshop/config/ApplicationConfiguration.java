@@ -21,10 +21,8 @@ public class ApplicationConfiguration {
 	
 	 @Bean
 	  public UserDetailsService userDetailsService() {
-	    return cpf -> {
-	    	System.out.println("CPF: " + cpf);
-	    	return repository.findByCpf(cpf).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-	    	};
+	    return cpf -> repository.findByCpf(cpf).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	    	
 	  }
 
 	  @Bean
