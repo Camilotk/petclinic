@@ -35,13 +35,13 @@
 - [x] Client Controller
 - [x] Pet Migration
 - [x] Pet Model
-- [ ] Pet Repository
-- [ ] Pet RepositoryImpl
+- [x] Pet Repository
+- [x] Pet RepositoryImpl
 - [ ] Pet Controller
 - [x] Consult Migration
 - [x] Consult Model
-- [ ] Consult Repository
-- [ ] Consult RepositoryImpl
+- [x] Consult Repository
+- [x] Consult RepositoryImpl
 - [ ] Consult Controller
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
