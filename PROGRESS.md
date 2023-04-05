@@ -33,13 +33,13 @@
 - [x] Client Repository
 - [x] Client RepositoryImpl
 - [x] Client Controller
-- [ ] Pet Migration
-- [ ] Pet Model
+- [x] Pet Migration
+- [x] Pet Model
 - [ ] Pet Repository
 - [ ] Pet RepositoryImpl
 - [ ] Pet Controller
-- [ ] Consult Migration
-- [ ] Consult Model
+- [x] Consult Migration
+- [x] Consult Model
 - [ ] Consult Repository
 - [ ] Consult RepositoryImpl
 - [ ] Consult Controller
