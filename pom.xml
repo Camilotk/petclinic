@@ -94,17 +94,6 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 		</dependency>
-		<dependency>
-  			<groupId>org.javamoney</groupId>
-  			<artifactId>moneta</artifactId>
-  			<version>1.2</version>
-  			<type>pom</type>
-		</dependency>
-		<dependency>
-    		<groupId>io.hypersistence</groupId>
-   	 		<artifactId>hypersistence-utils-hibernate-60</artifactId>
-    		<version>3.0.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
