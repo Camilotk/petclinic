@@ -37,12 +37,15 @@
 - [x] Pet Model
 - [x] Pet Repository
 - [x] Pet RepositoryImpl
-- [ ] Pet Controller
+- [x] Pet Controller
 - [x] Consult Migration
 - [x] Consult Model
 - [x] Consult Repository
 - [x] Consult RepositoryImpl
 - [ ] Consult Controller
+- [ ] Add Seed for Races
+- [ ] Add Seed for Admin User
+- [ ] Create an Example Req for ADM Auth
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
 - [ ] Unit Test for Race
@@ -55,3 +58,8 @@
 - [ ] Add Metrics
 - [ ] Add CI
 - [ ] Deploy
+
+## Extra
+- [ ] Add pagination in JSON responses
+- [ ] Add AWS S3 Bucket for photos
+- [ ] Create a form request for send photos
