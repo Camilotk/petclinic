@@ -2,12 +2,15 @@ package br.com.metaway.petshop.controllers;
 
 import java.math.BigInteger;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,7 @@ import br.com.metaway.petshop.models.Race;
 import br.com.metaway.petshop.repositories.ClientRepository;
 import br.com.metaway.petshop.repositories.PetRepository;
 import br.com.metaway.petshop.repositories.RaceRepository;
+
 
 @RestController
 @RequestMapping("/pets")
@@ -34,7 +38,7 @@ public class PetController {
 	private ClientRepository clients;
 	
 	@PostMapping
-    public ResponseEntity<Map<String, Object>>  createPet(@RequestBody Pet pet) {
+    public ResponseEntity<Map<String, Object>>  create(@RequestBody Pet pet) {
 		
 		// Check the Race in Database
 		BigInteger raceId = pet.getRace().getId();
@@ -76,5 +80,23 @@ public class PetController {
         
         return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
+
+	@GetMapping
+	public ResponseEntity<List<Map<String, Object>>> list() {
+		List<Pet> pets = repository.findAll();
+		
+		List<Map<String, Object>> responseBody = pets.stream().map(pet -> {
+			Map<String, Object> petData = new LinkedHashMap<>();
+			petData.put("id", pet.getId());
+			petData.put("name", pet.getName());
+			petData.put("client_cpf", pet.getClient().getCpf());
+			petData.put("birth_date", pet.getBirthDate());
+			petData.put("race_id", pet.getRace().getId());
+			return petData;
+		}).collect(Collectors.toList());
+		
+		return ResponseEntity.ok(responseBody);
+	}
+
 
 }
