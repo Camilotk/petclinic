@@ -37,7 +37,7 @@ public class ContactController {
 	@PostMapping
 	public ResponseEntity<Map<String, Object>> create(@RequestBody Contact contact) {
 	    String cpf = contact.getClient().getCpf();
-	    Optional<Client> optionalClient = clients.findById(cpf);
+	    Optional<Client> optionalClient = clients.findByCpf(cpf);
 	
 	    if (optionalClient.isEmpty()) {
 	        return ResponseEntity.badRequest().build();
