@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Pet extends BaseEntity {	
 	@NonNull
-	@Max(50)
 	private String name;
 	
 	@ManyToOne
@@ -34,10 +33,10 @@ public class Pet extends BaseEntity {
 	
 	@NonNull
 	@Column(name = "birth_date", columnDefinition = "DATE")
-	private LocalDate birthData;
+	private LocalDate birthDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "type_id")
+	@JoinColumn(name = "race_id")
 	private Race race;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
