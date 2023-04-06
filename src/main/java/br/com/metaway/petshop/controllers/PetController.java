@@ -10,8 +10,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -98,5 +101,79 @@ public class PetController {
 		return ResponseEntity.ok(responseBody);
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<Map<String, Object>> getById(@PathVariable BigInteger id) {
+		Optional<Pet> optionalPet = repository.findById(id);
+		
+		if (optionalPet.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		Pet pet = optionalPet.get();
+		
+		// Build the response body
+		Map<String, Object> responseBody = new LinkedHashMap<>();
+		responseBody.put("id", pet.getId());
+		responseBody.put("name", pet.getName());
+		responseBody.put("client_cpf", pet.getClient().getCpf());
+		responseBody.put("birth_date", pet.getBirthDate());
+		responseBody.put("race_id", pet.getRace().getId());
+		
+		return ResponseEntity.ok(responseBody);
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Map<String, Object>> edit(@PathVariable BigInteger id, @RequestBody Pet pet) {
+		Optional<Pet> optionalPet = repository.findById(id);
+		if (optionalPet.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		// Check the Race in Database
+		BigInteger raceId = pet.getRace().getId();
+		Optional<Race> optionalRace = races.findById(raceId);
+		if (optionalRace.isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
+
+		// Check the Client in Database
+		String cpf = pet.getClient().getCpf();
+		Optional<Client> optionalClient = clients.findByCpf(cpf);
+		if (optionalClient.isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
+
+		// Update the pet data
+		Pet existingPet = optionalPet.get();
+		existingPet.setName(pet.getName());
+		existingPet.setClient(optionalClient.get());
+		existingPet.setBirthDate(pet.getBirthDate());
+		existingPet.setRace(optionalRace.get());
+
+		// Save the updated pet
+		Pet savedPet = repository.save(existingPet);
+
+		// Build the response body
+		Map<String, Object> responseBody = new LinkedHashMap<>();
+		responseBody.put("id", savedPet.getId());
+		responseBody.put("name", savedPet.getName());
+		responseBody.put("client_cpf", savedPet.getClient().getCpf());
+		responseBody.put("birth_date", savedPet.getBirthDate());
+		responseBody.put("race_id", savedPet.getRace().getId());
+
+		return ResponseEntity.ok(responseBody);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deletePet(@PathVariable BigInteger id) {
+		Optional<Pet> optionalPet = repository.findById(id);
+		
+		if (optionalPet.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		repository.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }
