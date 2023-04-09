@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.metaway.petshop.models.Address;
-import br.com.metaway.petshop.models.Race;
 import br.com.metaway.petshop.repositories.AddressRepository;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 
 @RestController
 @RequestMapping("/addresses")
