@@ -68,6 +68,25 @@ public class VisitController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
 	
+    @GetMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> list(@PathVariable BigInteger id) {
+        Optional<Visit> optionalVisit = repository.findById(id);
+        if (optionalVisit.isPresent()) {
+            Visit visit = optionalVisit.get();
+            Map<String, Object> result = new LinkedHashMap<>();
+            result.put("id", visit.getId());
+            result.put("date", visit.getDate());
+            result.put("description", visit.getDescription());
+            result.put("pet", visit.getPet().getId());
+            result.put("value", visit.getValue());
+            result.put("currency", visit.getCurrency());
+            result.put("client", visit.getPet().getClient().getCpf());
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 	@GetMapping
     public ResponseEntity<List<Map<String, Object>>> listAll() {
         List<Visit> visits = repository.findAll();
@@ -86,6 +105,8 @@ public class VisitController {
 
         return ResponseEntity.ok(result);
     }
+
+    
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
