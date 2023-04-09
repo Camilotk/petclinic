@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -106,7 +107,44 @@ public class VisitController {
         return ResponseEntity.ok(result);
     }
 
-    
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable BigInteger id, @RequestBody Visit visit) {
+        Optional<Visit> optionalVisit = repository.findById(id);
+        if (optionalVisit.isPresent()) {
+            Visit existingVisit = optionalVisit.get();
+
+            // Check if the pet exists
+            BigInteger petId = visit.getPet().getId();
+            Optional<Pet> optionalPet = pets.findById(petId);
+
+            if (optionalPet.isEmpty()) {
+                return ResponseEntity.badRequest().build();
+            }
+
+            // Update the visit data
+            Pet pet = optionalPet.get();
+            existingVisit.setPet(pet);
+            existingVisit.setDate(visit.getDate());
+            existingVisit.setDescription(visit.getDescription());
+            existingVisit.setValue(visit.getValue());
+//            existingVisit.setCurrency("BRL");
+
+            // Save
+            Visit savedVisit = repository.save(existingVisit);
+
+            // Build the response body
+            Map<String, Object> responseBody = new LinkedHashMap<>();
+            responseBody.put("id", savedVisit.getId());
+            responseBody.put("pet_id", savedVisit.getPet().getId());
+            responseBody.put("date", savedVisit.getDate());
+            responseBody.put("description", savedVisit.getDescription());
+            responseBody.put("value", savedVisit.getValue());
+
+            return ResponseEntity.ok(responseBody);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
