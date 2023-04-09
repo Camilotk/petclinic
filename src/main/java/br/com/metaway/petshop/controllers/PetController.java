@@ -166,9 +166,9 @@ public class PetController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletePet(@PathVariable BigInteger id) {
-		Optional<Pet> optionalPet = repository.findById(id);
+		Optional<Pet> pet = repository.findById(id);
 		
-		if (optionalPet.isEmpty()) {
+		if (pet.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
 		
