@@ -42,7 +42,7 @@
 - [x] Consult Model
 - [x] Consult Repository
 - [x] Consult RepositoryImpl
-- [ ] Consult Controller
+- [x] Consult Controller
 - [ ] Add Seed for Races
 - [ ] Add Seed for Admin User
 - [ ] Create an Example Req for ADM Auth
