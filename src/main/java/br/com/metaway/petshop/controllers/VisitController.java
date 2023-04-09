@@ -2,12 +2,15 @@ package br.com.metaway.petshop.controllers;
 
 import java.math.BigInteger;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +48,8 @@ public class VisitController {
                 .pet(pet)
                 .date(visit.getDate())
                 .description(visit.getDescription())
+                .value(visit.getValue())
+                .currency("BRL")
                 .build();
 
         // Save
@@ -56,7 +61,29 @@ public class VisitController {
         responseBody.put("pet_id", savedVisit.getPet().getId());
         responseBody.put("date", savedVisit.getDate());
         responseBody.put("description", savedVisit.getDescription());
+        responseBody.put("value", savedVisit.getValue());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
+	
+	@GetMapping
+    public ResponseEntity<List<Map<String, Object>>> hello() {
+        List<Visit> visits = repository.findAll();
+
+        List<Map<String, Object>> result = visits.stream().map(visit -> {
+            Map<String, Object> visitMap = new LinkedHashMap<>();
+            visitMap.put("id", visit.getId());
+            visitMap.put("date", visit.getDate());
+            visitMap.put("description", visit.getDescription());
+            visitMap.put("pet", visit.getPet().getId());
+            visitMap.put("value", visit.getValue());
+            visitMap.put("currency", visit.getCurrency());
+            visitMap.put("client", visit.getPet().getClient().getCpf());
+            return visitMap;
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(result);
+    }
+
+	
 }
