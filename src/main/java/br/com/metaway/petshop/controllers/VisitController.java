@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +69,7 @@ public class VisitController {
     }
 	
 	@GetMapping
-    public ResponseEntity<List<Map<String, Object>>> hello() {
+    public ResponseEntity<List<Map<String, Object>>> listAll() {
         List<Visit> visits = repository.findAll();
 
         List<Map<String, Object>> result = visits.stream().map(visit -> {
@@ -85,5 +87,16 @@ public class VisitController {
         return ResponseEntity.ok(result);
     }
 
-	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
+		Optional<Visit> visit = repository.findById(id);
+		
+		if (visit.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		repository.deleteById(id);
+		
+		return ResponseEntity.noContent().build();
+	}
 }
