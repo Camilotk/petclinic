@@ -43,9 +43,9 @@
 - [x] Consult Repository
 - [x] Consult RepositoryImpl
 - [x] Consult Controller
-- [ ] Add Seed for Races
-- [ ] Add Seed for Admin User
-- [ ] Create an Example Req for ADM Auth
+- [x] Add Seed for Races
+- [x] Add Seed for Admin User
+- [x] Create an Example Req for ADM Auth
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
 - [ ] Unit Test for Race
