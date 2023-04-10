@@ -46,11 +46,20 @@
 - [x] Add Seed for Races
 - [x] Add Seed for Admin User
 - [x] Create an Example Req for ADM Auth
+- [ ] Refactor Race
+- [ ] Refactor Address
+- [ ] Refactor Contact
+- [ ] Refactor Client
+- [ ] Refactor Pet
+- [ ] Refactor Client
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
-- [ ] Unit Test for Race
-- [ ] Unit Test for Adress
-- [ ] Unit Test for Pet
+- [ ] Unit Tests for Race
+- [ ] Unit Tests for Address
+- [ ] Unit Tests for Contact
+- [ ] Unit Tests for Client
+- [ ] Unit Tests for Pet
+- [ ] Unit Tests for Client
 - [ ] Configure Auth for USER and ADMIN roles
 - [ ] Add Swagger Documentation
 - [ ] Add endpoint root in RootController to Swagger
