@@ -36,15 +36,6 @@ public class PetController {
 	@Autowired
 	private PetService service;
 	
-	@Autowired
-	private PetRepository repository;
-	
-	@Autowired
-	private RaceRepository races;
-	
-	@Autowired
-	private ClientRepository clients;
-	
 	@PostMapping
     public ResponseEntity<PetData> store(@RequestBody Pet pet) {
 		PetData newPet = service.create(pet);
