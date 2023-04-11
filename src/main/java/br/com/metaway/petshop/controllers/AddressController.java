@@ -25,12 +25,6 @@ public class AddressController {
 	@Autowired
 	private AddressService service;
 	
-	@PostMapping
-	public ResponseEntity<Address> store(@RequestBody Address address) {
-		Address newAddress = service.create(address);
-		return ResponseEntity.status(HttpStatus.CREATED).body(newAddress);
-	}
-	
 	@GetMapping
 	public ResponseEntity<List<Address>> index() {
 		List<Address> addresses = service.getAll();
@@ -46,6 +40,12 @@ public class AddressController {
 	    }
 	    
 	    return ResponseEntity.ok(address);
+	}
+	
+	@PostMapping
+	public ResponseEntity<Address> store(@RequestBody Address address) {
+		Address newAddress = service.create(address);
+		return ResponseEntity.status(HttpStatus.CREATED).body(newAddress);
 	}
 	
 	@PutMapping("/{id}")
