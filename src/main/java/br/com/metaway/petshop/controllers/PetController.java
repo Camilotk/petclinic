@@ -36,23 +36,12 @@ public class PetController {
 	@Autowired
 	private PetService service;
 	
-	@PostMapping
-    public ResponseEntity<PetData> store(@RequestBody Pet pet) {
-		PetData newPet = service.create(pet);
-		
-		if (newPet == null) {
-			return ResponseEntity.badRequest().build();
-		}
-        
-        return ResponseEntity.status(HttpStatus.CREATED).body(newPet);
-    }
-
 	@GetMapping
 	public ResponseEntity<List<PetData>> index() {
 		List<PetData> pets = service.getAll();
 		return ResponseEntity.ok(pets);
 	}
-
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<PetData> show(@PathVariable BigInteger id) {
 		PetData pet = service.getById(id);
@@ -63,6 +52,17 @@ public class PetController {
 		
 		return ResponseEntity.ok(pet);
 	}
+	
+	@PostMapping
+    public ResponseEntity<PetData> store(@RequestBody Pet pet) {
+		PetData newPet = service.create(pet);
+		
+		if (newPet == null) {
+			return ResponseEntity.badRequest().build();
+		}
+        
+        return ResponseEntity.status(HttpStatus.CREATED).body(newPet);
+    }
 
 	@PutMapping("/{id}")
 	public ResponseEntity<PetData> update(@PathVariable BigInteger id, @RequestBody Pet pet) {
