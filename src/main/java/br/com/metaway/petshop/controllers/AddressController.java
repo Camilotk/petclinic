@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.metaway.petshop.models.Address;
 import br.com.metaway.petshop.repositories.AddressRepository;
+import br.com.metaway.petshop.services.AddressService;
 
 @RestController
 @RequestMapping("/addresses")
@@ -26,60 +27,52 @@ public class AddressController {
 	@Autowired
 	private AddressRepository repository;
 	
+	@Autowired
+	private AddressService service;
+	
 	@PostMapping
-	public ResponseEntity<Address> create(@RequestBody Address address) {
-		Address newAddress = this.repository.save(address);
+	public ResponseEntity<Address> store(@RequestBody Address address) {
+		Address newAddress = service.create(address);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newAddress);
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Address>> getAll() {
-		List<Address> address = this.repository.findAll();
-		return ResponseEntity.ok(address);
+	public ResponseEntity<List<Address>> index() {
+		List<Address> addresses = service.getAll();
+		return ResponseEntity.ok(addresses);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Address> getById(@PathVariable BigInteger id) {
-	    Optional<Address> address = this.repository.findById(id);
-	    if (address.isPresent()) {
-	        return ResponseEntity.ok(address.get());
-	    } else {
-	        return ResponseEntity.notFound().build();
+	public ResponseEntity<Address> show(@PathVariable BigInteger id) {
+	    Address address = service.getById(id);
+	    
+	    if(address == null) {
+	    	return ResponseEntity.notFound().build();
 	    }
+	    
+	    return ResponseEntity.ok(address);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Address> update(@PathVariable BigInteger id, @RequestBody Address updatedAddress) {
-	    Optional<Address> address = this.repository.findById(id);
-	    if (address.isPresent()) {
-	        
-	    	Address existingAddress = address.get();
-	        
-	        existingAddress.setAddressLine(updatedAddress.getAddressLine());
-	        existingAddress.setAvenue(updatedAddress.getAvenue());
-	        existingAddress.setCity(updatedAddress.getCity());
-	        existingAddress.setState(updatedAddress.getState());
-	        existingAddress.setCountry(updatedAddress.getCountry());
-	        existingAddress.setZipCode(updatedAddress.getZipCode());
-	        existingAddress.setAdditionalInformation(updatedAddress.getAdditionalInformation());
-	        
-	        Address savedAddress = this.repository.save(existingAddress);
-	        
-	        return ResponseEntity.ok(savedAddress);
-	    } else {
-	        return ResponseEntity.notFound().build();
-	    }
+	public ResponseEntity<Address> update(@PathVariable BigInteger id, @RequestBody Address address) {
+		Address updatedAddress = service.edit(id, address);
+		
+		if (updatedAddress == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		return ResponseEntity.ok(updatedAddress);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
-	    Optional<Address> address = this.repository.findById(id);
-	    if (address.isPresent()) {
-	        this.repository.delete(address.get());
-	        return ResponseEntity.noContent().build();
-	    } else {
-	        return ResponseEntity.notFound().build();
-	    }
+	public ResponseEntity<Void> destroy(@PathVariable BigInteger id) {
+		Address address = service.delete(id);
+		
+		if (address == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+	    return ResponseEntity.noContent().build();
 	}
 	
 }
