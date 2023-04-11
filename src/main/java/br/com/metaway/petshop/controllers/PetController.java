@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +26,15 @@ import br.com.metaway.petshop.models.Race;
 import br.com.metaway.petshop.repositories.ClientRepository;
 import br.com.metaway.petshop.repositories.PetRepository;
 import br.com.metaway.petshop.repositories.RaceRepository;
+import br.com.metaway.petshop.repositories.dtos.PetData;
+import br.com.metaway.petshop.services.PetService;
 
 
 @RestController
 @RequestMapping("/pets")
 public class PetController {
+	@Autowired
+	private PetService service;
 	
 	@Autowired
 	private PetRepository repository;
@@ -41,138 +46,52 @@ public class PetController {
 	private ClientRepository clients;
 	
 	@PostMapping
-    public ResponseEntity<Map<String, Object>>  create(@RequestBody Pet pet) {
+    public ResponseEntity<PetData> store(@RequestBody Pet pet) {
+		PetData newPet = service.create(pet);
 		
-		// Check the Race in Database
-		BigInteger raceId = pet.getRace().getId();
-		Optional<Race> optionalRace = races.findById(raceId);
-		
-		if (optionalRace.isEmpty()) {
-	        return ResponseEntity.badRequest().build();
-	    }
-		
-		// Check the Client in Database
-		String cpf = pet.getClient().getCpf();
-	    Optional<Client> optionalClient = clients.findByCpf(cpf);
-
-	    if (optionalClient.isEmpty()) {
-	        return ResponseEntity.badRequest().build();
-	    }
-	    
-	    // Get the Data
-	    Client client = optionalClient.get();
-	    Race race = optionalRace.get();
-	    
-	    // Build the Record Data
-	    Pet newPet = pet.builder()
-	    		.name(pet.getName())
-	    		.client(client)
-	    		.birthDate(pet.getBirthDate())
-	    		.race(race)
-	    		.build();
-		
-	    // Save
-        Pet savedPet = repository.save(newPet);
+		if (newPet == null) {
+			return ResponseEntity.badRequest().build();
+		}
         
-        // Make the Return Interface
-        Map<String, Object> responseBody = new LinkedHashMap<>();
-        responseBody.put("id", savedPet.getName());
-        responseBody.put("client_cpf", savedPet.getClient().getCpf());
-        responseBody.put("birth_date", savedPet.getBirthDate());
-        responseBody.put("race_id", savedPet.getRace().getId());
-        
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newPet);
     }
 
 	@GetMapping
-	public ResponseEntity<List<Map<String, Object>>> list() {
-		List<Pet> pets = repository.findAll();
-		
-		List<Map<String, Object>> responseBody = pets.stream().map(pet -> {
-			Map<String, Object> petData = new LinkedHashMap<>();
-			petData.put("id", pet.getId());
-			petData.put("name", pet.getName());
-			petData.put("client_cpf", pet.getClient().getCpf());
-			petData.put("birth_date", pet.getBirthDate());
-			petData.put("race_id", pet.getRace().getId());
-			return petData;
-		}).collect(Collectors.toList());
-		
-		return ResponseEntity.ok(responseBody);
+	public ResponseEntity<List<PetData>> index() {
+		List<PetData> pets = service.getAll();
+		return ResponseEntity.ok(pets);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> getById(@PathVariable BigInteger id) {
-		Optional<Pet> optionalPet = repository.findById(id);
+	public ResponseEntity<PetData> show(@PathVariable BigInteger id) {
+		PetData pet = service.getById(id);
 		
-		if (optionalPet.isEmpty()) {
+		if (pet == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		Pet pet = optionalPet.get();
-		
-		// Build the response body
-		Map<String, Object> responseBody = new LinkedHashMap<>();
-		responseBody.put("id", pet.getId());
-		responseBody.put("name", pet.getName());
-		responseBody.put("client_cpf", pet.getClient().getCpf());
-		responseBody.put("birth_date", pet.getBirthDate());
-		responseBody.put("race_id", pet.getRace().getId());
-		
-		return ResponseEntity.ok(responseBody);
+		return ResponseEntity.ok(pet);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> edit(@PathVariable BigInteger id, @RequestBody Pet pet) {
-		Optional<Pet> optionalPet = repository.findById(id);
-		if (optionalPet.isEmpty()) {
+	public ResponseEntity<PetData> update(@PathVariable BigInteger id, @RequestBody Pet pet) {
+		PetData editedPet = service.edit(id, pet);
+		
+		if (editedPet == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		// Check the Race in Database
-		BigInteger raceId = pet.getRace().getId();
-		Optional<Race> optionalRace = races.findById(raceId);
-		if (optionalRace.isEmpty()) {
-			return ResponseEntity.badRequest().build();
-		}
-
-		// Check the Client in Database
-		String cpf = pet.getClient().getCpf();
-		Optional<Client> optionalClient = clients.findByCpf(cpf);
-		if (optionalClient.isEmpty()) {
-			return ResponseEntity.badRequest().build();
-		}
-
-		// Update the pet data
-		Pet existingPet = optionalPet.get();
-		existingPet.setName(pet.getName());
-		existingPet.setClient(optionalClient.get());
-		existingPet.setBirthDate(pet.getBirthDate());
-		existingPet.setRace(optionalRace.get());
-
-		// Save the updated pet
-		Pet savedPet = repository.save(existingPet);
-
-		// Build the response body
-		Map<String, Object> responseBody = new LinkedHashMap<>();
-		responseBody.put("id", savedPet.getId());
-		responseBody.put("name", savedPet.getName());
-		responseBody.put("client_cpf", savedPet.getClient().getCpf());
-		responseBody.put("birth_date", savedPet.getBirthDate());
-		responseBody.put("race_id", savedPet.getRace().getId());
-
-		return ResponseEntity.ok(responseBody);
+		return ResponseEntity.ok(editedPet);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deletePet(@PathVariable BigInteger id) {
-		Optional<Pet> pet = repository.findById(id);
-		
-		if (pet.isEmpty()) {
+	public ResponseEntity<Void> destroy(@PathVariable BigInteger id) {
+		Pet pet = service.delete(id);
+
+		if (pet == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		repository.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 
