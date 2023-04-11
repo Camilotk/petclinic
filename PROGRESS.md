@@ -47,7 +47,7 @@
 - [x] Add Seed for Admin User
 - [x] Create an Example Req for ADM Auth
 - [x] Refactor Race
-- [ ] Refactor Address
+- [x] Refactor Address
 - [ ] Refactor Contact
 - [ ] Refactor Client
 - [ ] Refactor Pet
