@@ -2,7 +2,6 @@ package br.com.metaway.petshop.controllers;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,59 +16,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.metaway.petshop.models.Race;
-import br.com.metaway.petshop.repositories.RaceRepository;
+import br.com.metaway.petshop.services.RaceService;
 
 @RestController
 @RequestMapping("/races")
 public class RaceController {
 	
 	@Autowired
-	private RaceRepository repository;
+	private RaceService service;
 	
 	@PostMapping
-	public ResponseEntity<Race> create(@RequestBody Race race) {
-		Race newRace = this.repository.save(race);
+	public ResponseEntity<Race> store(@RequestBody Race race) {
+		Race newRace = service.create(race);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newRace);
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Race>> getAll() {
-		List<Race> races = this.repository.findAll();
+	public ResponseEntity<List<Race>> show() {
+		List<Race> races = service.getAll();
 		return ResponseEntity.ok(races);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Race> getById(@PathVariable BigInteger id) {
-	    Optional<Race> race = this.repository.findById(id);
-	    if (race.isPresent()) {
-	        return ResponseEntity.ok(race.get());
+	    Race race = service.getById(id);
+	    
+	    if (race == null) {
+	    	return ResponseEntity.notFound().build();
 	    } else {
-	        return ResponseEntity.notFound().build();
+	    	return ResponseEntity.ok(race);
 	    }
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Race> update(@PathVariable BigInteger id, @RequestBody Race updatedRace) {
-	    Optional<Race> race = this.repository.findById(id);
-	    if (race.isPresent()) {
-	        Race existingRace = race.get();
-	        existingRace.setDescription(updatedRace.getDescription());
-	        Race savedRace = this.repository.save(existingRace);
-	        return ResponseEntity.ok(savedRace);
-	    } else {
-	        return ResponseEntity.notFound().build();
+	public ResponseEntity<Race> update(@PathVariable BigInteger id, @RequestBody Race race) {
+	    Race updatedRace = service.edit(id, race);
+	    
+	    if (updatedRace == null) {
+	    	return ResponseEntity.notFound().build();
 	    }
+	    
+        return ResponseEntity.ok(updatedRace);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
-	    Optional<Race> race = this.repository.findById(id);
-	    if (race.isPresent()) {
-	        this.repository.delete(race.get());
-	        return ResponseEntity.noContent().build();
-	    } else {
-	        return ResponseEntity.notFound().build();
+		Race deletedRace = service.delete(id);
+
+	    if (deletedRace == null) {
+	    	return ResponseEntity.notFound().build();
 	    }
+	    
+        return ResponseEntity.noContent().build();
 	}
 	
 }
