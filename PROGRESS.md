@@ -48,7 +48,7 @@
 - [x] Create an Example Req for ADM Auth
 - [x] Refactor Race
 - [x] Refactor Address
-- [ ] Refactor Contact
+- [x] Refactor Contact
 - [ ] Refactor Client
 - [ ] Refactor Pet
 - [ ] Refactor Client
