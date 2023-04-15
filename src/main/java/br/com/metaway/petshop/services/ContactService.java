@@ -55,14 +55,14 @@ public class ContactService {
 	// Get All
 	public List<ContactData> getAll() {
 		List<Contact> contacts = repository.findAll();
-	    List<ContactData> responseBody = contacts.stream()
+	    List<ContactData> contactsData = contacts.stream()
 		        .map(contact -> new ContactData(contact.getId(), 
 		        		                        contact.getClient().getCpf(), 
 		        		                        contact.getType(), 
 		        		                        contact.getValue(), 
 		        		                        contact.getCurrency())).collect(Collectors.toList()); 
 		
-		return new ArrayList<ContactData>();
+		return contactsData;
 	}
 	
 	// Get one
