@@ -57,7 +57,7 @@ public class RaceService {
 		
 		if (optionalRace.isPresent()) {
 			Race deletedRace = optionalRace.get();
-			repository.save(deletedRace);
+			repository.delete(deletedRace);
 			return deletedRace;
 		} else {
 			return null;
