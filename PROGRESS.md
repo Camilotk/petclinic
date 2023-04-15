@@ -46,11 +46,10 @@
 - [x] Add Seed for Races
 - [x] Add Seed for Admin User
 - [x] Create an Example Req for ADM Auth
-- [x] Refactor Race
+- [x] Refactor Pet
 - [x] Refactor Address
 - [x] Refactor Contact
-- [ ] Refactor Client
-- [ ] Refactor Pet
+- [ ] Refactor Race
 - [ ] Refactor Visit
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
