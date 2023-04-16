@@ -1,4 +1,6 @@
-# Petshop
+<h1 align="center">
+  <img src="https://uploaddeimagens.com.br/images/004/433/031/original/petshop-removebg-preview.png" alt="ocaml">
+</h1>
 
 Sistema de controle de atendimentos de uma petshop.
 
