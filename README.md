@@ -28,3 +28,4 @@ Dentro do terminal bash rode
 - [MVC Pattern](https://pt.wikipedia.org/wiki/MVC)
 - [The Twelve Factor App](https://12factor.net/pt_br/)
 - [JWT Stateless Authentication](https://jwt.io/)
+- [Richardson API Maturity Model Level 2](https://en.m.wikipedia.org/wiki/Richardson_Maturity_Model)
