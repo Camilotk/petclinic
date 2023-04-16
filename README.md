@@ -2,7 +2,7 @@
   <img src="https://uploaddeimagens.com.br/images/004/433/031/original/petshop-removebg-preview.png" alt="ocaml">
 </h1>
 
-Sistema de controle de atendimentos de uma petshop.
+API em Spring Boot de um Sistema de Controle de atendimentos de petshops.
 
 ## Como rodar o projeto
 
