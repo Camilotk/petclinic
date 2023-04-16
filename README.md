@@ -26,6 +26,13 @@ Dentro do terminal bash rode
 ./mvnw spring-boot:run
 ```
 
+## Requisitos
+<details>
+
+![](https://uploaddeimagens.com.br/images/004/433/038/original/objetivo_back_petshop.png)
+
+</details>
+
 ## Conceitos utilizados
 - [MVC Pattern](https://pt.wikipedia.org/wiki/MVC)
 - [The Twelve Factor App](https://12factor.net/pt_br/)
