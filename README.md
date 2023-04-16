@@ -2,23 +2,29 @@
 
 Sistema de controle de atendimentos de uma petshop.
 
-<!--  
-
-## Acessar o Banco de Dados
-
-O projeto está utilizando o H2.
-
-- [localhost:8080/h2-console/](localhost:8080/h2-console/)
-
-com credenciais:
-
-- **user**: sa
-- **password**: asdf -->
-
 ## Como rodar o projeto
 
-Dentro do terminal bash rode
+### Pré-requisitos
+- Java 17 ou superior
+- Maven
+- PostgreSQL
+
+### Configuração
+Configurar as chaves de sistema:
 ```
-./mvnw spring-boot:repackage && ./mvnw spring-boot:run
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
+POSTGRES_PORT=
 ```
 
+### Executar o Projeto
+Dentro do terminal bash rode
+```
+./mvnw spring-boot:run
+```
+
+## Conceitos utilizados
+- [MVC Pattern](https://pt.wikipedia.org/wiki/MVC)
+- [The Twelve Factor App](https://12factor.net/pt_br/)
+- [JWT Stateless Authentication](https://jwt.io/)
