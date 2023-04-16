@@ -50,7 +50,7 @@
 - [x] Refactor Address
 - [x] Refactor Contact
 - [x] Refactor Race
-- [ ] Refactor Visit
+- [x] Refactor Visit
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
 - [ ] Unit Tests for Race
@@ -69,5 +69,6 @@
 
 ## Extra
 - [ ] Add pagination in JSON responses
+- [ ] Add better Exception Messages
 - [ ] Add AWS S3 Bucket for photos
 - [ ] Create a form request for send photos
