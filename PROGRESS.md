@@ -49,7 +49,7 @@
 - [x] Refactor Pet
 - [x] Refactor Address
 - [x] Refactor Contact
-- [ ] Refactor Race
+- [x] Refactor Race
 - [ ] Refactor Visit
 - [ ] Add Test Database as H2
 - [ ] Write Unit Tests with JUnit 7
