@@ -5,12 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.metaway.petshop.models.Address;
 
-public interface AddressRepository {
-	Optional<Address> findById(BigInteger id) throws DataAccessException;
-	List<Address> findAll() throws DataAccessException;
-    Address save(Address address) throws DataAccessException;
-    void delete(Address address) throws DataAccessException;
+public interface AddressRepository extends JpaRepository<Address, BigInteger> {
+
 }
