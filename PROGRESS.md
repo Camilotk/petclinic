@@ -54,7 +54,7 @@
 - [x] Add Test Database as H2
 - [x] Write Unit Tests with JUnit 5
 - [x] Unit Tests for Race
-- [ ] Unit Tests for Address
+- [x] Unit Tests for Address
 - [ ] Unit Tests for Pet
 - [ ] Unit Tests for Contact
 - [ ] Unit Tests for Visit
