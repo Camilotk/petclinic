@@ -26,6 +26,12 @@ Dentro do terminal bash rode
 ./mvnw spring-boot:run
 ```
 
+### Executar os Testes
+Dentro do terminal bash rode
+```
+./mvnw test
+```
+
 ## Requisitos
 <details>
 
