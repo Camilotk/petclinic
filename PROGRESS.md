@@ -53,11 +53,10 @@
 - [x] Refactor Visit
 - [x] Add Test Database as H2
 - [x] Write Unit Tests with JUnit 5
-- [ ] Unit Tests for Pet
-- [ ] Unit Tests for Race
+- [x] Unit Tests for Race
 - [ ] Unit Tests for Address
+- [ ] Unit Tests for Pet
 - [ ] Unit Tests for Contact
-- [ ] Unit Tests for Client
 - [ ] Unit Tests for Visit
 - [ ] Configure Auth for USER and ADMIN roles
 - [ ] Add Swagger Documentation
