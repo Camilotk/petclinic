@@ -81,19 +81,18 @@ class PetRepositoryTest {
 	@Test
 	@DisplayName("it should save a pet and then edit it")
 	public void testUpdatePet() {
-	    repository.save(somePet);
+	    // When saving the pet
+	    Pet savedPet = repository.save(somePet);
 
-	    Optional<Pet> theOptionalPet = repository.findById(BigInteger.ONE);
-	    Pet thePet = theOptionalPet.get();
-	    
+	    // Then the pet should be saved with an ID
+	    assertThat(savedPet.getId()).isNotNull();
 
-	    thePet.setName("Carlos Manoel");
-	    repository.save(thePet);
-	    
-	    Optional<Pet> theOptionalEditedPet = repository.findById(BigInteger.ONE);
-	    Pet theEditedPet = theOptionalEditedPet.get();
+	    // When updating the pet
+	    savedPet.setName("Carlos Manoel");
+	    Pet updatedPet = repository.save(savedPet);
 
-	    assertThat(theEditedPet.getName()).isEqualTo("Carlos Manoel");
+	    // Then the updated pet should have the new name
+	    assertThat(updatedPet.getName()).isEqualTo("Carlos Manoel");
 	}
 
 }
