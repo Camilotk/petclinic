@@ -1,8 +1,8 @@
 package br.com.metaway.petshop.services;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -70,10 +70,10 @@ class RaceServiceTest {
 
 	    when(repository.findById(raceId)).thenReturn(Optional.of(race));
 
-	    Optional<Race> foundRaceOptional = service.getById(raceId);
-	    assertTrue(foundRaceOptional.isPresent());
+	    Race foundRaceOptional = service.getById(raceId);
+	    assertThat(foundRaceOptional.getDescription()).isEqualTo("Test Race");
 
-	    Race foundRace = foundRaceOptional.get();
+	    Race foundRace = foundRaceOptional;
 	    assertEquals(raceId, foundRace.getId());
 	    assertEquals(race.getDescription(), foundRace.getDescription());
 
