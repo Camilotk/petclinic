@@ -27,9 +27,15 @@ public class RaceService {
         return repository.findAll();
     }
 
-    public Optional<Race> getById(BigInteger id) {
-        return repository.findById(id);
-    }
+	public Race getById(BigInteger id) {
+		Optional<Race> race = repository.findById(id);
+
+		if (race.isPresent()) {
+			return race.get();
+		} else {
+			return null;
+		}
+	}
 
     public Race edit(BigInteger id, Race race) {
         Optional<Race> optionalRace = repository.findById(id);
