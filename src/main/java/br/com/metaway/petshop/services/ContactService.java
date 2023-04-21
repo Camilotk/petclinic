@@ -1,15 +1,14 @@
 package br.com.metaway.petshop.services;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Client;
@@ -26,7 +25,7 @@ public class ContactService {
 	@Autowired
 	private ClientRepository clients;
 	
-	// Create
+	@CachePut(value = "contact", key = "#contact.id")
 	public ContactData create (Contact contact) {
 		// Check if the Client exists
 		String cpf = contact.getClient().getCpf();
@@ -52,7 +51,7 @@ public class ContactService {
 							   newContact.getCurrency());
 	}
 	
-	// Get All
+	@Cacheable(value = "allContacts") 
 	public List<ContactData> getAll() {
 		List<Contact> contacts = repository.findAll();
 	    List<ContactData> contactsData = contacts.stream()
@@ -65,7 +64,7 @@ public class ContactService {
 		return contactsData;
 	}
 	
-	// Get one
+	@Cacheable(value = "contactById", key = "#id")
 	public ContactData getById(BigInteger id) {
 		// Check the contact in DB
 		Optional<Contact> optionalContact = repository.findById(id);
@@ -85,6 +84,7 @@ public class ContactService {
 							   contact.getCurrency());
 	}
 	
+	@CachePut(value = "contact", key = "#id")
 	public ContactData edit(BigInteger id, Contact contact) {
 		// Check if the Client exists
 		String cpf = contact.getClient().getCpf();
@@ -116,6 +116,7 @@ public class ContactService {
 							   contact.getCurrency());
 	}
 	
+	@CacheEvict(value = "contact", key = "#id")
 	public Contact deleteById(BigInteger id) {
 		Optional<Contact> optionalContact = repository.findById(id);
 		
