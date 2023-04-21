@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Address;
@@ -15,16 +18,19 @@ public class AddressService {
 	@Autowired
 	private AddressRepository repository;
 	
+	@CachePut(value = "address", key = "#address.id")
 	public Address create(Address address) {
 		repository.save(address);
 		return address;
 	}
 	
+	@Cacheable(value = "allAddresses") 
 	public List<Address> getAll() {
 		List<Address> addresses = repository.findAll();
 		return addresses;
 	}
 
+	@Cacheable(value = "addressById", key = "#id")
 	public Address getById(BigInteger id) {
 		Optional<Address> address = repository.findById(id);
 		
@@ -35,6 +41,7 @@ public class AddressService {
 	    }
 	}
 	
+	@CachePut(value = "address", key = "#id")
 	public Address edit(BigInteger id, Address address) {
 		Optional<Address> optionalAddress = repository.findById(id);
 		
@@ -58,6 +65,7 @@ public class AddressService {
 	    }
 	}
 	
+	@CacheEvict(value = "address", key = "#id")
 	public Address delete(BigInteger id) {
 		Optional<Address> address = repository.findById(id);
 		

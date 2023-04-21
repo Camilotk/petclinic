@@ -1,5 +1,7 @@
 package br.com.metaway.petshop.models;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Address extends BaseEntity {
+public class Address extends BaseEntity  implements Serializable {
 	
 	@NotEmpty
 	@Column(name = "address_line", nullable = false)
