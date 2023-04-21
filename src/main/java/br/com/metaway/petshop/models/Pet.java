@@ -1,5 +1,6 @@
 package br.com.metaway.petshop.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -12,7 +13,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +23,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Pet extends BaseEntity {	
+public class Pet extends BaseEntity implements Serializable {	
+	private static final long serialVersionUID = -9102164740303188304L;
+
 	@NonNull
 	private String name;
 	
