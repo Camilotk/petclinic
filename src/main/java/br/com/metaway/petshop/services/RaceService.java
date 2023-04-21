@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Race;
@@ -17,16 +20,19 @@ public class RaceService {
 
     public RaceService(@Autowired RaceRepository repository) {
         this.repository = repository;
-    }
-
+    }    
+ 
+    @CachePut(value = "race", key = "#pet.id")
     public Race create(Race race) {
         return repository.save(race);
     }
 
+    @Cacheable(value = "allRaces") 
     public List<Race> getAll() {
         return repository.findAll();
     }
 
+    @Cacheable(value = "raceById", key = "#id")
 	public Race getById(BigInteger id) {
 		Optional<Race> race = repository.findById(id);
 
@@ -37,6 +43,7 @@ public class RaceService {
 		}
 	}
 
+    @CachePut(value = "race", key = "#id")
     public Race edit(BigInteger id, Race race) {
         Optional<Race> optionalRace = repository.findById(id);
 
@@ -49,6 +56,7 @@ public class RaceService {
         }
     }
 
+    @CacheEvict(value = "race", key = "#id")
     public Race delete(BigInteger id) {
         Optional<Race> optionalRace = repository.findById(id);
 
