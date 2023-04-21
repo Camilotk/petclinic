@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Pet;
@@ -21,6 +24,7 @@ public class VisitService {
 	@Autowired
 	private PetRepository pets;
 	
+	@CachePut(value = "visit", key = "#visit.id")
 	public VisitData create(Visit visit) {
 		// Check if the Pet exists and get the data
 		Optional<Pet> optionalPet = pets.findById(visit.getPet().getId());
@@ -51,6 +55,7 @@ public class VisitService {
 				             savedVisit.getCurrency());
 	}
 	
+	@Cacheable(value = "allVisits") 
 	public List<VisitData> getAll() {
 		List<Visit> visits = repository.findAll();
 		List<VisitData> visitsData = visits.stream()
@@ -63,6 +68,7 @@ public class VisitService {
 		return visitsData;
 	}
 	
+	@Cacheable(value = "visitById", key = "#id")
 	public VisitData getById(BigInteger id) {
 		Optional<Visit> optionalVisit = repository.findById(id);
 		
@@ -80,7 +86,7 @@ public class VisitService {
 				             visit.getCurrency());
 	}
 	
-	
+	@CachePut(value = "visit", key = "#id")
 	public VisitData edit(BigInteger id, Visit visit) {
 		// Check if the Visit exists in DB, if it does retrieve if not return null.
 		Optional<Visit> optionalVisit = repository.findById(id);
@@ -122,6 +128,7 @@ public class VisitService {
 							 savedVisit.getCurrency());
 	}
 	
+	@CacheEvict(value = "visit", key = "#id")
 	public Visit delete(BigInteger id) {
 		Optional<Visit> visit = repository.findById(id);
 		
