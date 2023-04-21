@@ -63,11 +63,12 @@
 - [ ] Add endpoint root in RootController to Swagger
 - [ ] Containerize in Docker
 - [ ] Add Metrics
-- [ ] Add CI
+- [x] Add CI
 - [ ] Deploy
 
 ## Extra
 - [ ] Add pagination in JSON responses
+- [ ] Add Caching for better usability
 - [ ] Add better Exception Messages
 - [ ] Add AWS S3 Bucket for photos
 - [ ] Create a form request for send photos
