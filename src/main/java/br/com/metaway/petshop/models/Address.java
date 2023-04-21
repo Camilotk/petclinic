@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Address extends BaseEntity  implements Serializable {
-	
+	private static final long serialVersionUID = -1042329839125871072L;
+
 	@NotEmpty
 	@Column(name = "address_line", nullable = false)
 	private String addressLine;
