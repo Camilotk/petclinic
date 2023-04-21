@@ -55,8 +55,8 @@
 - [x] Write Unit Tests with JUnit 5
 - [x] Unit Tests for Race
 - [x] Unit Tests for Address
-- [ ] Unit Tests for Pet
-- [ ] Unit Tests for Contact
+- [x] Unit Tests for Pet
+- [x] Unit Tests for Contact
 - [ ] Unit Tests for Visit
 - [ ] Configure Auth for USER and ADMIN roles
 - [ ] Add Swagger Documentation
