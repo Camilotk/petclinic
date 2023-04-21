@@ -1,5 +1,6 @@
 package br.com.metaway.petshop.models;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Contact extends BaseEntity {
+public class Contact extends BaseEntity implements Serializable {
+	private static final long serialVersionUID = -3465095490421345698L;
+
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "client_cpf", referencedColumnName = "cpf")
