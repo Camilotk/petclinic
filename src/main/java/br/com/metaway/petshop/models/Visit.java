@@ -1,5 +1,6 @@
 package br.com.metaway.petshop.models;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -19,8 +20,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Visit extends BaseEntity {
-    @Column(name = "visit_date")
+public class Visit extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = -8065805564570756622L;
+
+	@Column(name = "visit_date")
     private Date date;
 
     @NotEmpty
