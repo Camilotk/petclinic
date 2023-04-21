@@ -2,6 +2,11 @@
   <img src="https://uploaddeimagens.com.br/images/004/433/031/original/petshop-removebg-preview.png" alt="ocaml">
 </h1>
 
+![build status](https://img.shields.io/github/actions/workflow/status/Camilotk/petshop/ci.yml?style=flat-square)
+![lines of code](https://img.shields.io/tokei/lines/github/Camilotk/petshop?style=flat-square)
+![commit activity](https://img.shields.io/github/commit-activity/m/Camilotk/petshop?style=flat-square)
+![last commit](https://img.shields.io/github/last-commit/Camilotk/petshop?style=flat-square)
+
 API em Spring Boot de um Sistema de Controle de atendimentos de petshops.
 
 ## Como rodar o projeto
