@@ -1,18 +1,25 @@
 spring:
-    datasource:
-      driver-class-name: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:32772/petshop
-      username: postgres
-      password: postgrespw
-    jpa:
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  #    password: <your Redis password> # If applicable
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:32768/petshop
+    username: postgres
+    password: postgrespw
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
       hibernate:
-        ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_url: true
-      database: postgresql
-      database-platform: org.hibernate.dialect.PostgreSQLDialect
-    flyway:
-      locations: classpath:db/migration
-      validateOnMigrate: true
+        format_url: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    locations: classpath:db/migration
+    validateOnMigrate: true
