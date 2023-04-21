@@ -1,13 +1,14 @@
 package br.com.metaway.petshop.services;
 
 import java.math.BigInteger;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Client;
@@ -30,6 +31,7 @@ public class PetService {
 	@Autowired
 	private ClientRepository clients;
 	
+	@CachePut(value = "pet", key = "#pet.id")
 	public PetData create(Pet pet) {
 		// Check if the Race is valid
 		BigInteger raceId = pet.getRace().getId();
@@ -69,6 +71,7 @@ public class PetService {
 						   newPet.getRace().getId());
 	}
 	
+	@Cacheable(value = "allPets") 
 	public List<PetData> getAll() {
 		List<Pet> petsData = repository.findAll();
 		
@@ -83,6 +86,7 @@ public class PetService {
 		return pets;
 	}
 	
+	@Cacheable(value = "petById", key = "#id")
 	public PetData getById(BigInteger id) {
 		Optional<Pet> optionalPet = repository.findById(id);
 		
@@ -99,6 +103,7 @@ public class PetService {
 						   pet.getRace().getId());
 	}
 	
+	@CachePut(value = "pet", key = "#id")
 	public PetData edit(BigInteger id, Pet pet) {
 		// Check if the Pet already exists by ID
 		Optional<Pet> optionalPet = repository.findById(id);
@@ -139,6 +144,7 @@ public class PetService {
 				 		   editedPet.getRace().getId());
 	}
 	
+	@CacheEvict(value = "pet", key = "#id")
 	public Pet delete (BigInteger id) {
 		Optional<Pet> pet = repository.findById(id);
 
