@@ -17,6 +17,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
+    - name: Change permissions of mvnw script
+      run: chmod +x ./mvnw
     - name: Build with Maven
       run: ./mvnw clean install
     - name: Test with Maven
