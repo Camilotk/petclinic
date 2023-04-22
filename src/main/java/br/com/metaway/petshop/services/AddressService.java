@@ -19,6 +19,7 @@ public class AddressService {
 	private AddressRepository repository;
 	
 	@CachePut(value = "address", key = "#address.id")
+	@CacheEvict(value = "allAddresses", allEntries = true)
 	public Address create(Address address) {
 		repository.save(address);
 		return address;
@@ -65,7 +66,7 @@ public class AddressService {
 	    }
 	}
 	
-	@CacheEvict(value = "address", key = "#id")
+	@CacheEvict(value = {"address", "allAddresses"}, key = "#id", allEntries = true)
 	public Address delete(BigInteger id) {
 		Optional<Address> address = repository.findById(id);
 		
