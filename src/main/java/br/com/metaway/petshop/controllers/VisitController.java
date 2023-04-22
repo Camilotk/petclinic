@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,8 +52,8 @@ public class VisitController {
     }
 
 	@GetMapping
-	public ResponseEntity<List<VisitData>> index() {
-        List<VisitData> visits = service.getAll();
+	public ResponseEntity<Page<VisitData>> index(Pageable pageable) {
+        Page<VisitData> visits = service.getAll(pageable);
         return ResponseEntity.ok(visits);
     }
 
