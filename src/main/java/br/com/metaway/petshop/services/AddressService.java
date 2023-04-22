@@ -1,13 +1,14 @@
 package br.com.metaway.petshop.services;
 
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Address;
@@ -26,8 +27,8 @@ public class AddressService {
 	}
 	
 	@Cacheable(value = "allAddresses") 
-	public List<Address> getAll() {
-		List<Address> addresses = repository.findAll();
+	public Page<Address> getAll(Pageable pageable) {
+		Page<Address> addresses = repository.findAll(pageable);
 		return addresses;
 	}
 
