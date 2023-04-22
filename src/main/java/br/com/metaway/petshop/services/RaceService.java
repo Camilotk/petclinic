@@ -46,6 +46,7 @@ public class RaceService {
 	}
 
     @CachePut(value = "race", key = "#id")
+    @CacheEvict(value = {"race", "allRaces"}, key = "#id", allEntries = true)
     public Race edit(BigInteger id, Race race) {
         Optional<Race> optionalRace = repository.findById(id);
 
