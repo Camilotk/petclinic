@@ -62,8 +62,8 @@
 - [x] Add Caching for better usability
 - [x] Add pagination in JSON responses
 - [x] Add better Exception Messages
-- [ ] Add Swagger Documentation
-- [ ] Add endpoint root in RootController to Swagger
+- [ ] Add Swagger Documentation `quase`
+- [x] Add endpoint root in RootController to Swagger
 - [ ] Containerize in Docker
 - [ ] Add Metrics
 - [ ] Configure Auth for USER and ADMIN roles
