@@ -1,0 +1,3 @@
+message:
+  invalid_attribute: The attribute in the request body is invalid
+  not_found: The ID was not found

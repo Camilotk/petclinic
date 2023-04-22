@@ -1,0 +1,3 @@
+message:
+  invalid_attribute: O atributo no corpo da requisicao e invalido
+  not_found: O id do objeto não foi encontrado
