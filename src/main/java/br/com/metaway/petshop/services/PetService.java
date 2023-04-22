@@ -32,6 +32,7 @@ public class PetService {
 	private ClientRepository clients;
 	
 	@CachePut(value = "pet", key = "#pet.id")
+	@CacheEvict(value = "allPets", allEntries = true)
 	public PetData create(Pet pet) {
 		// Check if the Race is valid
 		BigInteger raceId = pet.getRace().getId();
@@ -144,7 +145,7 @@ public class PetService {
 				 		   editedPet.getRace().getId());
 	}
 	
-	@CacheEvict(value = "pet", key = "#id")
+	@CacheEvict(value = {"pet", "allPets"}, key = "#id", allEntries = true)
 	public Pet delete (BigInteger id) {
 		Optional<Pet> pet = repository.findById(id);
 
