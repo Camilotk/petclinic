@@ -31,7 +31,7 @@ public class PetService {
 	@Autowired
 	private ClientRepository clients;
 	
-	@CachePut(value = "pet", key = "#pet.id")
+	@CachePut(value = "pet")
 	@CacheEvict(value = "allPets", allEntries = true)
 	public PetData create(Pet pet) {
 		// Check if the Race is valid
@@ -99,7 +99,8 @@ public class PetService {
 						   pet.getRace().getId());
 	}
 	
-	@CachePut(value = "pet", key = "#id")
+	@CachePut(value = "pet")
+	@CacheEvict(value = {"pet", "allPets"}, key = "#id", allEntries = true)
 	public PetData edit(BigInteger id, Pet pet) {
 		// Check if the Pet already exists by ID
 		Optional<Pet> optionalPet = repository.findById(id);
