@@ -1,13 +1,10 @@
 package br.com.metaway.petshop.controllers;
 
 import java.math.BigInteger;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.metaway.petshop.models.Client;
 import br.com.metaway.petshop.models.Contact;
-import br.com.metaway.petshop.repositories.ClientRepository;
-import br.com.metaway.petshop.repositories.ContactRepository;
 import br.com.metaway.petshop.repositories.dtos.ContactData;
 import br.com.metaway.petshop.services.ContactService;
 
@@ -34,8 +28,8 @@ public class ContactController {
 	private ContactService service;
 	
 	@GetMapping
-	public ResponseEntity<List<ContactData>> index() {
-	    List<ContactData> contacts = service.getAll();
+	public ResponseEntity<Page<ContactData>> index(Pageable pageable) {
+	    Page<ContactData> contacts = service.getAll(pageable);
 	    return ResponseEntity.ok(contacts);
 	}
 	

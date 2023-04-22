@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Client;
@@ -53,16 +56,16 @@ public class ContactService {
 	}
 	
 	@Cacheable(value = "allContacts") 
-	public List<ContactData> getAll() {
-		List<Contact> contacts = repository.findAll();
-	    List<ContactData> contactsData = contacts.stream()
-		        .map(contact -> new ContactData(contact.getId(), 
-		        		                        contact.getClient().getCpf(), 
-		        		                        contact.getType(), 
-		        		                        contact.getValue(), 
-		        		                        contact.getCurrency())).collect(Collectors.toList()); 
-		
-		return contactsData;
+	public Page<ContactData> getAll(Pageable pageable) {
+	    Page<Contact> contactsPage = repository.findAll(pageable);
+	    List<ContactData> contactsData = contactsPage.getContent().stream()
+	        .map(contact -> new ContactData(contact.getId(), 
+	                                         contact.getClient().getCpf(), 
+	                                         contact.getType(), 
+	                                         contact.getValue(), 
+	                                         contact.getCurrency()))
+	        .collect(Collectors.toList()); 
+	    return new PageImpl<ContactData>(contactsData, pageable, contactsPage.getTotalElements());
 	}
 	
 	@Cacheable(value = "contactById", key = "#id")
