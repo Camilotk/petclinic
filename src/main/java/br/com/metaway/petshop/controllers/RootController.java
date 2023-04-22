@@ -1,21 +1,18 @@
 package br.com.metaway.petshop.controllers;
 
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URI;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class RootController {
 	
 	@GetMapping("/")
-	public Map<String, String> hello() {
-		Map<String, String> message = new HashMap<>();
-		message.put("message", "Hello World!");
-		message.put("date", Instant.now().toString());
-		
-		return message;
+	public ResponseEntity<Void> redirectToSwaggerUI() {
+		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/swagger-ui/index.html").build().toUri();
+		return ResponseEntity.status(302).location(location).build();
 	}
 }
