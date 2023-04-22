@@ -26,6 +26,7 @@ public class ContactService {
 	private ClientRepository clients;
 	
 	@CachePut(value = "contact", key = "#contact.id")
+	@CacheEvict(value = "allContacts", allEntries = true)
 	public ContactData create (Contact contact) {
 		// Check if the Client exists
 		String cpf = contact.getClient().getCpf();
@@ -116,7 +117,7 @@ public class ContactService {
 							   contact.getCurrency());
 	}
 	
-	@CacheEvict(value = "contact", key = "#id")
+	@CacheEvict(value = {"contact", "allContacts"}, key = "#id", allEntries = true)
 	public Contact deleteById(BigInteger id) {
 		Optional<Contact> optionalContact = repository.findById(id);
 		
