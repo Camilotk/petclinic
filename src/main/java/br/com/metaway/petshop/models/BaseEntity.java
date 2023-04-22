@@ -1,5 +1,6 @@
 package br.com.metaway.petshop.models;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ import jakarta.persistence.MappedSuperclass;
  *
  */
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected BigInteger id;
