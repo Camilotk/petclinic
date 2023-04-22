@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.metaway.petshop.config.docs.AuthenticationDocumentation;
 import br.com.metaway.petshop.services.AuthenticationService;
 import br.com.metaway.petshop.web.AuthenticationRequest;
 import br.com.metaway.petshop.web.AuthenticationResponse;
@@ -15,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-public class AuthenticationController {
+public class AuthenticationController implements AuthenticationDocumentation {
 	
 	public final AuthenticationService service;
 	
@@ -30,6 +31,5 @@ public class AuthenticationController {
 			 @RequestBody AuthenticationRequest request) {
 		return ResponseEntity.ok(service.authenticate(request));
 	}
-	
 	
 }
