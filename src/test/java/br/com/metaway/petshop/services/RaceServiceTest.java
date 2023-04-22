@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import br.com.metaway.petshop.models.Race;
 import br.com.metaway.petshop.repositories.RaceRepository;
@@ -50,16 +53,19 @@ class RaceServiceTest {
 	    Race race1 = Race.builder().description("Race 1").build();
 	    Race race2 = Race.builder().description("Race 2").build();
 	    
-	    when(repository.findAll()).thenReturn(Arrays.asList(race1, race2));
+	    Pageable pageable = PageRequest.of(0, 10);
+	    Page<Race> page = new PageImpl<>(Arrays.asList(race1, race2));
+	    
+	    when(repository.findAll(pageable)).thenReturn(page);
 
-	    List<Race> races = service.getAll();
+	    Page<Race> result = service.getAll(pageable);
 	    
-	    assertNotNull(races);
-	    assertEquals(2, races.size());
-	    assertEquals(race1.getDescription(), races.get(0).getDescription());
-	    assertEquals(race2.getDescription(), races.get(1).getDescription());
+	    assertNotNull(result);
+	    assertEquals(2, result.getTotalElements());
+	    assertEquals(race1.getDescription(), result.getContent().get(0).getDescription());
+	    assertEquals(race2.getDescription(), result.getContent().get(1).getDescription());
 	    
-	    verify(repository).findAll();
+	    verify(repository).findAll(pageable);
 	}
 	
 	@Test

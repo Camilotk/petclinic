@@ -12,6 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import br.com.metaway.petshop.models.Client;
 import br.com.metaway.petshop.models.Contact;
@@ -181,7 +184,7 @@ public class ContactServiceTest {
     }
     
     @Test
-    void testFindAll() {
+    void testGetAll() {
         // Create some sample contacts
         Client user1 = Client.builder()
                              .cpf("111.111.111-11")
@@ -214,14 +217,15 @@ public class ContactServiceTest {
         contact2.setId(BigInteger.TWO);
         
         // Set up the mock behavior
-        Mockito.when(repository.findAll()).thenReturn(List.of(contact1, contact2));
+        PageRequest pageRequest = PageRequest.of(0, 1); // Request the first page with one element
+        Page<Contact> page = new PageImpl<>(List.of(contact1), pageRequest, 2); // Return a page with one element and a total of two elements
+        Mockito.when(repository.findAll(pageRequest)).thenReturn(page);
         
-        // Call the findAll method
-        List<ContactData> result = service.getAll();
+        // Call the getAll method
+        Page<ContactData> result = service.getAll(pageRequest);
         
         // Check the result
-        assertThat(result).hasSize(2);
-        assertThat(result.get(0)).isEqualTo(new ContactData(BigInteger.ONE, user1.getCpf(), ContactType.EMAIL, BigInteger.valueOf(1234), "BRL"));
-        assertThat(result.get(1)).isEqualTo(new ContactData(BigInteger.TWO, user2.getCpf(), ContactType.CELLPHONE, BigInteger.valueOf(5678), "USD"));
+        assertThat(result).hasSize(1);
+        assertThat(result.getContent().get(0)).isEqualTo(new ContactData(BigInteger.ONE, user1.getCpf(), ContactType.EMAIL, BigInteger.valueOf(1234), "BRL"));
     }
 }

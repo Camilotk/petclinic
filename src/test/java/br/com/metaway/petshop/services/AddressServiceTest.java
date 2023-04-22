@@ -3,11 +3,11 @@ package br.com.metaway.petshop.services;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +16,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import br.com.metaway.petshop.models.Address;
 import br.com.metaway.petshop.repositories.AddressRepository;
@@ -49,17 +53,19 @@ class AddressServiceTest {
 	public void testGetAll() {
 	    Address address1 = Address.builder().city("City 1").build();
 	    Address address2 = Address.builder().city("City 2").build();
-	    
-	    when(repository.findAll()).thenReturn(Arrays.asList(address1, address2));
 
-	    List<Address> addresses = service.getAll();
-	    
-	    assertNotNull(addresses);
-	    assertEquals(2, addresses.size());
-	    assertEquals(address1.getCity(), addresses.get(0).getCity());
-	    assertEquals(address2.getCity(), addresses.get(1).getCity());
-	    
-	    verify(repository).findAll();
+	    Page<Address> page = new PageImpl<>(List.of(address1, address2));
+	    when(repository.findAll(any(Pageable.class))).thenReturn(page);
+
+	    PageRequest pageable = PageRequest.of(0, 10);
+	    Page<Address> result = service.getAll(pageable);
+
+	    assertNotNull(result);
+	    assertEquals(2, result.getTotalElements());
+	    assertEquals(address1.getCity(), result.getContent().get(0).getCity());
+	    assertEquals(address2.getCity(), result.getContent().get(1).getCity());
+
+	    verify(repository).findAll(any(Pageable.class));
 	}
 	
 	@Test
