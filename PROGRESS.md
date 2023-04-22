@@ -60,7 +60,7 @@
 - [ ] Unit Tests for Visit
 - [x] Add CI
 - [x] Add Caching for better usability
-- [ ] Add pagination in JSON responses
+- [x] Add pagination in JSON responses
 - [ ] Add better Exception Messages
 - [ ] Add Swagger Documentation
 - [ ] Add endpoint root in RootController to Swagger
