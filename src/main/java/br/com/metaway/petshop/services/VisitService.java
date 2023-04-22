@@ -28,7 +28,8 @@ public class VisitService {
 	@Autowired
 	private PetRepository pets;
 	
-	@CachePut(value = "visit", key = "#visit.id")
+	@CachePut(value = "visit")
+	@CacheEvict(value = "allVisits", allEntries = true)
 	public VisitData create(Visit visit) {
 		// Check if the Pet exists and get the data
 		Optional<Pet> optionalPet = pets.findById(visit.getPet().getId());
@@ -133,7 +134,7 @@ public class VisitService {
 							 savedVisit.getCurrency());
 	}
 	
-	@CacheEvict(value = "visit", key = "#id")
+	@CacheEvict(value = {"visit", "allVisits"}, key = "#id", allEntries = true)
 	public Visit delete(BigInteger id) {
 		Optional<Visit> visit = repository.findById(id);
 		
