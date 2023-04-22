@@ -58,17 +58,16 @@
 - [x] Unit Tests for Pet
 - [x] Unit Tests for Contact
 - [ ] Unit Tests for Visit
-- [ ] Configure Auth for USER and ADMIN roles
+- [x] Add CI
+- [x] Add Caching for better usability
+- [ ] Add pagination in JSON responses
+- [ ] Add better Exception Messages
 - [ ] Add Swagger Documentation
 - [ ] Add endpoint root in RootController to Swagger
 - [ ] Containerize in Docker
 - [ ] Add Metrics
-- [x] Add CI
+- [ ] Configure Auth for USER and ADMIN roles
 - [ ] Deploy
 
-## Extra
-- [ ] Add pagination in JSON responses
-- [ ] Add Caching for better usability
-- [ ] Add better Exception Messages
-- [ ] Add AWS S3 Bucket for photos
-- [ ] Create a form request for send photos
+
+
