@@ -93,6 +93,7 @@ public class VisitService {
 	}
 	
 	@CachePut(value = "visit", key = "#id")
+	@CacheEvict(value = {"visit", "allVisits"}, key = "#id", allEntries = true)
 	public VisitData edit(BigInteger id, Visit visit) {
 		// Check if the Visit exists in DB, if it does retrieve if not return null.
 		Optional<Visit> optionalVisit = repository.findById(id);
