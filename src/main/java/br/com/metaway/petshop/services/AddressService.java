@@ -44,6 +44,7 @@ public class AddressService {
 	}
 	
 	@CachePut(value = "address", key = "#id")
+	@CacheEvict(value = {"address", "allAddresses"}, key = "#id", allEntries = true)
 	public Address edit(BigInteger id, Address address) {
 		Optional<Address> optionalAddress = repository.findById(id);
 		
