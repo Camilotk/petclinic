@@ -22,7 +22,8 @@ public class RaceService {
         this.repository = repository;
     }    
  
-    @CachePut(value = "race", key = "#pet.id")
+    @CachePut(value = "race")
+    @CacheEvict(value = "allRaces", allEntries = true)
     public Race create(Race race) {
         return repository.save(race);
     }
@@ -56,7 +57,7 @@ public class RaceService {
         }
     }
 
-    @CacheEvict(value = "race", key = "#id")
+    @CacheEvict(value = {"race", "allRaces"}, key = "#id", allEntries = true)
     public Race delete(BigInteger id) {
         Optional<Race> optionalRace = repository.findById(id);
 
