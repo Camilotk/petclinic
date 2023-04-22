@@ -89,6 +89,7 @@ public class ContactService {
 	}
 	
 	@CachePut(value = "contact", key = "#id")
+	@CacheEvict(value = {"contact", "allContacts"}, key = "#id", allEntries = true)
 	public ContactData edit(BigInteger id, Contact contact) {
 		// Check if the Client exists
 		String cpf = contact.getClient().getCpf();
