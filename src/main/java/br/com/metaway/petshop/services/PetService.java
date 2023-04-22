@@ -1,14 +1,14 @@
 package br.com.metaway.petshop.services;
 
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Client;
@@ -73,18 +73,13 @@ public class PetService {
 	}
 	
 	@Cacheable(value = "allPets") 
-	public List<PetData> getAll() {
-		List<Pet> petsData = repository.findAll();
-		
-		List<PetData> pets = petsData.stream().map(pet -> {
-			return new PetData(pet.getId(), 
-							   pet.getName(), 
-							   pet.getClient().getCpf(), 
-							   pet.getBirthDate(), 
-							   pet.getRace().getId());
-		}).collect(Collectors.toList());
-		
-		return pets;
+	public Page<PetData> getAll(Pageable pageable) {
+	    Page<Pet> petsPage = repository.findAll(pageable);
+	    return petsPage.map(pet -> new PetData(pet.getId(), 
+	                                           pet.getName(), 
+	                                           pet.getClient().getCpf(), 
+	                                           pet.getBirthDate(), 
+	                                           pet.getRace().getId()));
 	}
 	
 	@Cacheable(value = "petById", key = "#id")

@@ -2,6 +2,7 @@ package br.com.metaway.petshop.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -16,6 +17,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import br.com.metaway.petshop.models.Client;
 import br.com.metaway.petshop.models.Pet;
@@ -189,7 +194,7 @@ class PetServiceTest {
 	}
 	
 	@Test
-	void testFindAll() {
+	void testGetAll() {
 	    // Create some test pets
 	    Pet pet1 = new Pet();
 	    pet1.setId(BigInteger.valueOf(1));
@@ -219,24 +224,26 @@ class PetServiceTest {
 
 	    // Set up mock repository response
 	    List<Pet> pets = Arrays.asList(pet1, pet2);
-	    when(petRepository.findAll()).thenReturn(pets);
+	    Page<Pet> petsPage = new PageImpl<>(pets);
+	    when(petRepository.findAll(any(Pageable.class))).thenReturn(petsPage);
 
 	    // Call the service method
-	    List<PetData> foundPets = petService.getAll();
+	    Page<PetData> foundPets = petService.getAll(PageRequest.of(0, 10));
 
 	    // Verify the repository interactions
-	    verify(petRepository).findAll();
+	    verify(petRepository).findAll(any(Pageable.class));
 
 	    // Verify the returned PetData objects
 	    assertNotNull(foundPets);
-	    assertEquals(pets.size(), foundPets.size());
-	    for (int i = 0; i < pets.size(); i++) {
-	        Pet pet = pets.get(i);
-	        PetData foundPet = foundPets.get(i);
-	        assertEquals(pet.getName(), foundPet.name());
-	        assertEquals(pet.getBirthDate(), foundPet.birthDate());
-	        assertEquals(pet.getRace().getId(), foundPet.raceId());
-	        assertEquals(pet.getClient().getCpf(), foundPet.clientCpf());
-	    }
+	    assertEquals(pets.size(), foundPets.getTotalElements());
+	    assertEquals(pets.size(), foundPets.getContent().size());
+	    assertEquals(pet1.getName(), foundPets.getContent().get(0).name());
+	    assertEquals(pet1.getBirthDate(), foundPets.getContent().get(0).birthDate());
+	    assertEquals(pet1.getRace().getId(), foundPets.getContent().get(0).raceId());
+	    assertEquals(pet1.getClient().getCpf(), foundPets.getContent().get(0).clientCpf());
+	    assertEquals(pet2.getName(), foundPets.getContent().get(1).name());
+	    assertEquals(pet2.getBirthDate(), foundPets.getContent().get(1).birthDate());
+	    assertEquals(pet2.getRace().getId(), foundPets.getContent().get(1).raceId());
+	    assertEquals(pet2.getClient().getCpf(), foundPets.getContent().get(1).clientCpf());
 	}
 }

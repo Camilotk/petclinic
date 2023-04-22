@@ -1,16 +1,12 @@
 package br.com.metaway.petshop.controllers;
 
 import java.math.BigInteger;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,12 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.metaway.petshop.models.Client;
 import br.com.metaway.petshop.models.Pet;
-import br.com.metaway.petshop.models.Race;
-import br.com.metaway.petshop.repositories.ClientRepository;
-import br.com.metaway.petshop.repositories.PetRepository;
-import br.com.metaway.petshop.repositories.RaceRepository;
 import br.com.metaway.petshop.repositories.dtos.PetData;
 import br.com.metaway.petshop.services.PetService;
 
@@ -37,8 +28,8 @@ public class PetController {
 	private PetService service;
 	
 	@GetMapping
-	public ResponseEntity<List<PetData>> index() {
-		List<PetData> pets = service.getAll();
+	public ResponseEntity<Page<PetData>> index(Pageable pageable) {
+		Page<PetData> pets = service.getAll(pageable);
 		return ResponseEntity.ok(pets);
 	}
 	
