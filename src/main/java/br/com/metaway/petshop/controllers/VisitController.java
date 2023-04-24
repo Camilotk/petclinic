@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.metaway.petshop.config.docs.VisitDocumentation;
 import br.com.metaway.petshop.models.Visit;
 import br.com.metaway.petshop.repositories.dtos.VisitData;
 import br.com.metaway.petshop.services.VisitService;
@@ -24,7 +25,7 @@ import br.com.metaway.petshop.services.VisitService;
 
 @RestController
 @RequestMapping("/visits")
-public class VisitController {
+public class VisitController implements VisitDocumentation {
 	
 	@Autowired
 	private VisitService service;
