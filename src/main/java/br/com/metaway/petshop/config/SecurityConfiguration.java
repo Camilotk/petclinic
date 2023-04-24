@@ -26,7 +26,7 @@ public class SecurityConfiguration {
 
 		http.csrf().disable().authorizeHttpRequests()
 		        .requestMatchers(new OrRequestMatcher(new AntPathRequestMatcher("/"),
-		        									  new AntPathRequestMatcher("/auth/**"), 
+		        									  new AntPathRequestMatcher("/v1/auth/**"), 
 		        		                              new AntPathRequestMatcher("/swagger-ui/**"),
 		        		                              new AntPathRequestMatcher("/v3/api-docs/**"))).permitAll()
 		        .anyRequest().authenticated().and()
