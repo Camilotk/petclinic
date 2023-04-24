@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.metaway.petshop.config.docs.RaceDocumentation;
 import br.com.metaway.petshop.models.Race;
 import br.com.metaway.petshop.services.RaceService;
 
 @RestController
 @RequestMapping("/races")
-public class RaceController {
+public class RaceController implements RaceDocumentation {
 	
 	@Autowired
 	private RaceService service;
