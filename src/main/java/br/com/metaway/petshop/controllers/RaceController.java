@@ -26,20 +26,14 @@ public class RaceController {
 	@Autowired
 	private RaceService service;
 	
-	@PostMapping
-	public ResponseEntity<Race> store(@RequestBody Race race) {
-		Race newRace = service.create(race);
-		return ResponseEntity.status(HttpStatus.CREATED).body(newRace);
-	}
-	
 	@GetMapping
-	public ResponseEntity<Page<Race>> show(Pageable pageable) {
+	public ResponseEntity<Page<Race>> index(Pageable pageable) {
 		Page<Race> races = service.getAll(pageable);
 		return ResponseEntity.ok(races);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Race> getById(@PathVariable BigInteger id) {
+	public ResponseEntity<Race> show(@PathVariable BigInteger id) {
 	    Race race = service.getById(id);
 	    
 	    if (race == null) {
@@ -47,6 +41,12 @@ public class RaceController {
 	    } else {
 	    	return ResponseEntity.ok(race);
 	    }
+	}
+	
+	@PostMapping
+	public ResponseEntity<Race> store(@RequestBody Race race) {
+		Race newRace = service.create(race);
+		return ResponseEntity.status(HttpStatus.CREATED).body(newRace);
 	}
 	
 	@PutMapping("/{id}")
@@ -61,7 +61,7 @@ public class RaceController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
+	public ResponseEntity<Void> destroy(@PathVariable BigInteger id) {
 		Race deletedRace = service.delete(id);
 
 	    if (deletedRace == null) {

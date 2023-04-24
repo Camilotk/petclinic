@@ -29,6 +29,23 @@ public class VisitController {
 	@Autowired
 	private VisitService service;
 	
+	@GetMapping
+	public ResponseEntity<Page<VisitData>> index(Pageable pageable) {
+        Page<VisitData> visits = service.getAll(pageable);
+        return ResponseEntity.ok(visits);
+    }
+	
+	@GetMapping("/{id}")
+    public ResponseEntity<VisitData> show(@PathVariable BigInteger id) {
+    	VisitData visit = service.getById(id);
+    	
+    	if (visit == null) {
+    		return ResponseEntity.notFound().build();
+    	}
+    	
+    	return ResponseEntity.ok(visit);
+    }
+	
 	@PostMapping
     public ResponseEntity<VisitData> store(@RequestBody Visit visit) {
 		VisitData savedVisit = service.create(visit);
@@ -39,24 +56,7 @@ public class VisitController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVisit);
     }
-	
-    @GetMapping("/{id}")
-    public ResponseEntity<VisitData> show(@PathVariable BigInteger id) {
-    	VisitData visit = service.getById(id);
-    	
-    	if (visit == null) {
-    		return ResponseEntity.notFound().build();
-    	}
-    	
-    	return ResponseEntity.ok(visit);
-    }
-
-	@GetMapping
-	public ResponseEntity<Page<VisitData>> index(Pageable pageable) {
-        Page<VisitData> visits = service.getAll(pageable);
-        return ResponseEntity.ok(visits);
-    }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<VisitData> update(@PathVariable BigInteger id, @RequestBody Visit visit) {
     	VisitData editedVisit = service.edit(id, visit);
