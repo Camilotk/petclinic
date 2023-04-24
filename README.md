@@ -22,10 +22,11 @@ API em Spring Boot de um Sistema de Controle de atendimentos de petshops.
 ### Configuração
 Configurar as chaves de sistema:
 ```
+POSTGRES_HOST=
+POSTGRES_PORT=
+POSTGRES_DB=
 POSTGRES_USER=
 POSTGRES_PASSWORD=
-POSTGRES_DB=
-POSTGRES_PORT=
 REDIS_HOST=
 REDIS_PORT=
 JWT_SECRET=
