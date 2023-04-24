@@ -1,0 +1,996 @@
+_type: export
+__export_format: 4
+__export_date: 2023-04-24T07:39:46.402Z
+__export_source: insomnia.desktop.app:v2023.1.0
+resources:
+  - _id: req_9fd707f710dd4d2c95eb3d13fe0150b4
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1682320778188
+    created: 1680418942300
+    url: http://localhost:8080/v1/auth/register
+    name: Register a user
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"cpf": "367.699.400-00",
+        	"firstname": "Camilo",
+        	"lastname": "de Azevedo",
+        	"email": "camilotk@gmail.com",
+        	"password": "1234"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1680418942300
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_585e19213470474c94f2152b4b10e6d2
+    parentId: null
+    modified: 1682321565258
+    created: 1680129751218
+    name: Petshop Metaway
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_358a87242e9e4c418e7ce6ad09da8743
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1682320921135
+    created: 1680417871633
+    url: http://localhost:8080/v1/auth/authenticate
+    name: Authenticate // Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"cpf": "367.699.400-00",
+        	"password": "1234"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1680417871633
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b807e59c6f3c4f28ae17d187e781008d
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1682320794637
+    created: 1681020824091
+    url: http://localhost:8080/v1/auth/authenticate
+    name: Authenticate // ADM
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"cpf": "611.857.530-44",
+        	"password": "mypassword"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1680316704436.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_90ec9d8230974835b28141b7eb390d94
+    parentId: fld_d9c237e836d54b4d9a7a25595bec2559
+    modified: 1682321266095
+    created: 1680222083791
+    url: http://localhost:8080/v1/addresses
+    name: Create an Address
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"addressLine": "123 Main St",
+        	"avenue": "Central",
+        	"city": "Anytown",
+        	"state": "CA",
+        	"country": "USA",
+        	"zipCode": "12345"
+        }
+    parameters: []
+    headers:
+      - id: pair_957204cb3ff24531a8c4d4ceca9c01bb
+        name: Content-Type
+        value: application/json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      disabled: false
+      prefix: Bearer
+    metaSortKey: -1680129751203
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_d9c237e836d54b4d9a7a25595bec2559
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1680220639895
+    created: 1680220639895
+    name: Address
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1680220639895
+    _type: request_group
+  - _id: req_919dd655c2cc4c16826a43f9ec1439ed
+    parentId: fld_d9c237e836d54b4d9a7a25595bec2559
+    modified: 1682321272209
+    created: 1680222051743
+    url: http://localhost:8080/v1/addresses/4
+    name: List one Address
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - id: pair_957204cb3ff24531a8c4d4ceca9c01bb
+        name: Content-Type
+        value: application/json
+        description: ""
+    authentication:
+      type: bearer
+      prefix: Bearer
+      token: "{{ _.token_value }}"
+    metaSortKey: -1680129751199.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fdccb10b0e6f45788367d243c89fa607
+    parentId: fld_d9c237e836d54b4d9a7a25595bec2559
+    modified: 1682321277653
+    created: 1680222117016
+    url: http://localhost:8080/v1/addresses/2
+    name: Edit an Address
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"addressLine": "Rua dos Bobos N0",
+        	"avenue": "Linkin Park",
+        	"city": "Nárnia",
+        	"state": "NN",
+        	"country": "BR",
+        	"zipCode": "54321"
+        }
+    parameters: []
+    headers:
+      - id: pair_957204cb3ff24531a8c4d4ceca9c01bb
+        name: Content-Type
+        value: application/json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680129751196.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c5e416c1926548b7b6f1981ed68f8865
+    parentId: fld_d9c237e836d54b4d9a7a25595bec2559
+    modified: 1682321281393
+    created: 1680129751227
+    url: http://localhost:8080/v1/addresses
+    name: List All Addresses
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - id: pair_957204cb3ff24531a8c4d4ceca9c01bb
+        name: Content-Type
+        value: application/json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680129751190.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_85636ea2f7084516905498ef8b6258a8
+    parentId: fld_d9c237e836d54b4d9a7a25595bec2559
+    modified: 1682321285503
+    created: 1680222095070
+    url: http://localhost:8080/v1/addresses/12
+    name: Delete an Address
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - id: pair_957204cb3ff24531a8c4d4ceca9c01bb
+        name: Content-Type
+        value: application/json
+        description: ""
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680129751078
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6672ef273c2c4d8ea9cccd9711c50e8a
+    parentId: fld_83c5b338114f49c3aeb4a031a30952e7
+    modified: 1682321289042
+    created: 1680215525329
+    url: http://localhost:8080/v1/races
+    name: Create a Race
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "description": "Labrador Retriever"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680215537240
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_83c5b338114f49c3aeb4a031a30952e7
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1680215482841
+    created: 1680215482841
+    name: Race
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1680215482841
+    _type: request_group
+  - _id: req_3e6e2b0f805847999a8c334f7df76eb8
+    parentId: fld_83c5b338114f49c3aeb4a031a30952e7
+    modified: 1682321295094
+    created: 1680215506496
+    url: http://localhost:8080/v1/races/42
+    name: List a Race
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680215506496
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8976604d4db842b485d72bef30f034f4
+    parentId: fld_83c5b338114f49c3aeb4a031a30952e7
+    modified: 1682321298405
+    created: 1680215567984
+    url: http://localhost:8080/v1/races/65
+    name: Edit a Race
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "description": "Collie"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680215504052.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2ad6b87a4c6d470bb1fac3c69c4d7464
+    parentId: fld_83c5b338114f49c3aeb4a031a30952e7
+    modified: 1682321301603
+    created: 1680215486945
+    url: http://localhost:8080/v1/races
+    name: List all Races
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680215502830.1875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f315078aae6e4872ac85d13a63773266
+    parentId: fld_83c5b338114f49c3aeb4a031a30952e7
+    modified: 1682321335537
+    created: 1682125947963
+    url: http://localhost:8080/v1/races?page=2
+    name: List all Races Page 2
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680215502219.2188
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_12e27b8b8deb481baab750d4ba231d9f
+    parentId: fld_83c5b338114f49c3aeb4a031a30952e7
+    modified: 1682135341141
+    created: 1680215821550
+    url: http://localhost:8080/races/65
+    name: Delete a Race
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680215501608.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0ecf724820074e90b7f7ae146d6d543c
+    parentId: fld_474de7ede3d541c0a948893307d5115f
+    modified: 1682321353079
+    created: 1680581289494
+    url: http://localhost:8080/v1/contacts
+    name: Create a Contact
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |+
+        {
+          "client": {
+            "cpf": "367.699.400-00"
+          },
+          "type": "EMAIL",
+          "value": 1000
+        }
+
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680560455889.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_474de7ede3d541c0a948893307d5115f
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1680580669519
+    created: 1680580666840
+    name: Contact
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1680215482791
+    _type: request_group
+  - _id: req_0b2acc90e15e47b0a17178b5bcf41dff
+    parentId: fld_474de7ede3d541c0a948893307d5115f
+    modified: 1682321357159
+    created: 1680588601837
+    url: http://localhost:8080/v1/contacts/2
+    name: List a Contact
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680540239662.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ea922d462a2540769fb5780f18ad6308
+    parentId: fld_474de7ede3d541c0a948893307d5115f
+    modified: 1682321363377
+    created: 1680598562993
+    url: http://localhost:8080/v1/contacts/5
+    name: Edit a Contact
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |+
+        {
+          "client": {
+            "cpf": "367.699.400-00"
+          },
+          "type": "CELLPHONE",
+          "value": 1500
+        }
+
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680530131536.6875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_97b7e37a2167404086ee011675961fad
+    parentId: fld_474de7ede3d541c0a948893307d5115f
+    modified: 1682321366568
+    created: 1680580672117
+    url: http://localhost:8080/v1/contacts
+    name: List All Contacts
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680520023410.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0515329458f44569ab2d19f2d40ece9f
+    parentId: fld_474de7ede3d541c0a948893307d5115f
+    modified: 1682321371193
+    created: 1680589176453
+    url: http://localhost:8080/v1/contacts/4
+    name: Delete a Contact
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680499807158.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_25787fff609040698ab36ffb2915ada8
+    parentId: fld_97582aa3578242af887bf4d63e634503
+    modified: 1682321380058
+    created: 1680737646434
+    url: http://localhost:8080/v1/pets
+    name: Create a Pet
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name": "Max",
+            "client": {
+                "cpf": "367.699.400-00"
+            },
+            "birthDate": "2019-01-01",
+        	 "race": {
+        		 "id": 2
+        	 }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680737646434
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_97582aa3578242af887bf4d63e634503
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1680737643778
+    created: 1680737640518
+    name: Pet
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1680215482741
+    _type: request_group
+  - _id: req_38579254491c4ba1a7b97d3fc58d55f8
+    parentId: fld_97582aa3578242af887bf4d63e634503
+    modified: 1682321384792
+    created: 1680745609407
+    url: http://localhost:8080/v1/pets/1
+    name: List a Pet
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680715497615.9844
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f822b880c3c14be7b06af49c7a6cd687
+    parentId: fld_97582aa3578242af887bf4d63e634503
+    modified: 1682321389518
+    created: 1680746041023
+    url: http://localhost:8080/v1/pets/9
+    name: Edit a Pet
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name": "Terry",
+            "client": {
+                "cpf": "367.699.400-00"
+            },
+            "birthDate": "2019-06-07",
+        	 "race": {
+        		 "id": 45
+        	 }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680693348797.9688
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e7ea7e8fb29b4db8b15e4aa982deee2d
+    parentId: fld_97582aa3578242af887bf4d63e634503
+    modified: 1682321394107
+    created: 1680745360000
+    url: http://localhost:8080/v1/pets
+    name: List all Pets
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680649051161.9375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_31cc8e7c9c72490d9a6b2f98020dfce3
+    parentId: fld_97582aa3578242af887bf4d63e634503
+    modified: 1682321398962
+    created: 1680746325796
+    url: http://localhost:8080/v1/pets/6
+    name: Delete a Pet
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1680649051111.9375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3a95781f226b4c6cb1d365c4e3b57fee
+    parentId: fld_d84a6bfa635f46008be101a985193b6f
+    modified: 1682321404148
+    created: 1681013732660
+    url: http://localhost:8080/v1/visits
+    name: Create a Visit
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "pet": {
+                "id": 1
+            },
+            "date": "2023-04-05",
+        		"value": 1000.50,
+            "description": "Annual checkup"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1681013803047.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_d84a6bfa635f46008be101a985193b6f
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1681013729740
+    created: 1681013641756
+    name: Visit
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1680215482691
+    _type: request_group
+  - _id: req_d6fa880b1d2740429f8391ac3407b980
+    parentId: fld_d84a6bfa635f46008be101a985193b6f
+    modified: 1682321408773
+    created: 1681019057952
+    url: http://localhost:8080/v1/visits/4
+    name: List a Visit
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1681013803034.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_06728ba83fc04c2ea3bbd3d6cfcf3f1b
+    parentId: fld_d84a6bfa635f46008be101a985193b6f
+    modified: 1682321413229
+    created: 1681019603550
+    url: http://localhost:8080/v1/visits/2
+    name: Edit a Visit
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "pet": {
+                "id": 1
+            },
+            "date": "2023-04-05",
+        		"value": 300,
+            "description": "Vaccine"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1681013803028.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e402537db5a748b7a0c1d5851608970c
+    parentId: fld_d84a6bfa635f46008be101a985193b6f
+    modified: 1682321420253
+    created: 1681013813131
+    url: http://localhost:8080/v1/visits
+    name: List all Visits
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1681013803022.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7e4317759b2d4bf1b8c3dfcc7cb0755e
+    parentId: fld_d84a6bfa635f46008be101a985193b6f
+    modified: 1682321427710
+    created: 1681018178864
+    url: http://localhost:8080/v1/visits/2
+    name: Delete a Visit
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token_value }}"
+      prefix: Bearer
+    metaSortKey: -1681013802997.125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_e0090f8654a2be32a532cf7caf09fa27aa783c0b
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1680580878406
+    created: 1680129751222
+    name: Base Environment
+    data:
+      base_url: "{{ _.protocol }}://{{ _.base_url }}/"
+      protocol: http
+      url: localhost:8080
+      token_value: ""
+    dataPropertyOrder:
+      "&":
+        - base_url
+        - protocol
+        - url
+        - token_value
+    color: null
+    isPrivate: false
+    metaSortKey: 1680129751222
+    _type: environment
+  - _id: jar_e0090f8654a2be32a532cf7caf09fa27aa783c0b
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1681015352431
+    created: 1680129751224
+    name: Default Jar
+    cookies:
+      - key: JSESSIONID
+        value: 92373CDE78F7A388C1F9D186BDEAE322
+        domain: localhost
+        path: /
+        httpOnly: true
+        hostOnly: true
+        creation: 2023-04-09T03:56:08.620Z
+        lastAccessed: 2023-04-09T04:42:32.431Z
+        id: "9872108299124962"
+    _type: cookie_jar
+  - _id: spc_4a6d840b1f2f44b2b1ef8de028f744a7
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1682321565255
+    created: 1680129751218
+    fileName: Petshop Metaway
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: uts_3ad286e408674ee89e8e6da607511210
+    parentId: wrk_585e19213470474c94f2152b4b10e6d2
+    modified: 1680129751229
+    created: 1680129751229
+    name: Example Test Suite
+    _type: unit_test_suite
+  - _id: env_d2382ea334614e0d98bef736df729877
+    parentId: env_e0090f8654a2be32a532cf7caf09fa27aa783c0b
+    modified: 1682321325186
+    created: 1680580887893
+    name: Metaway
+    data:
+      base_url: "{{ _.protocol }}://{{ _.url }}/"
+      protocol: http
+      url: localhost:8080
+      token_value: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNjcuNjk5LjQwMC0wMCIsImlhdCI6MTY4MjMyMTExMCwiZXhwIjoxNjgyMzM1NTEwfQ.nXazWHwNZeqPOW4F6S0pOiufzT9sdlq1wE2JMKZSEI0
+    dataPropertyOrder:
+      "&":
+        - base_url
+        - protocol
+        - url
+        - token_value
+    color: "#fb4646"
+    isPrivate: false
+    metaSortKey: 1680580887893
+    _type: environment

@@ -43,6 +43,11 @@ Dentro do terminal bash rode
 ./mvnw test
 ```
 
+### Documentação Swagger
+Após a aplicação estar rodando, basta acessar o endereço raiz no navegador (para localhost padrão [http://localhost:8080](#)) e a documentação vai abrir.
+
+> Caso prefira você pode baixar [essa configuração](./Insomnia_Petshop.yaml) do [Insomnia](https://insomnia.rest/) e utilizá-la para testar a API.
+
 ## Requisitos
 <details>
 
