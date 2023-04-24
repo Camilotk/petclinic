@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.metaway.petshop.config.docs.ContactDocumentation;
 import br.com.metaway.petshop.models.Contact;
 import br.com.metaway.petshop.repositories.dtos.ContactData;
 import br.com.metaway.petshop.services.ContactService;
 
 @RestController
 @RequestMapping("/contacts")
-public class ContactController {
+public class ContactController implements ContactDocumentation {
 	
 	@Autowired
 	private ContactService service;
