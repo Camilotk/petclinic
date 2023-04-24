@@ -26,6 +26,6 @@ public interface AddressDocumentation {
 	@Operation(description = "Update the data of the existing Address in database with provided Address information.")
 	public ResponseEntity<Address> update(@PathVariable BigInteger id, @RequestBody Address address);
 	
-	@Operation(description = "Delete the address data with given ID")
+	@Operation(description = "Delete the Address data with given ID")
 	public ResponseEntity<Void> destroy(@PathVariable BigInteger id);
 }

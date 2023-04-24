@@ -27,6 +27,6 @@ public interface ContactDocumentation {
 	@Operation(description = "Update the data of the existing Contact in database with provided Contact information.")
 	public ResponseEntity<ContactData> update(@PathVariable BigInteger id, @RequestBody Contact contact);
 	
-	@Operation(description = "Delete the contact data with given ID")
+	@Operation(description = "Delete the Contact data with given ID")
 	public ResponseEntity<Void> destroy(@PathVariable BigInteger id);
 }
