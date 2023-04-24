@@ -17,7 +17,7 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-	private static final String SECRET_KEY = "jwtsupersecretkey2023asdasddasdasdasdasdasasdasdas";
+	private static final String SECRET_KEY = System.getenv("JWT_SECRET");
 	
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
