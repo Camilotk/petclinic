@@ -21,7 +21,7 @@ import br.com.metaway.petshop.models.Address;
 import br.com.metaway.petshop.services.AddressService;
 
 @RestController
-@RequestMapping("/addresses")
+@RequestMapping("/v1/addresses")
 public class AddressController implements AddressDocumentation {
 	
 	@Autowired

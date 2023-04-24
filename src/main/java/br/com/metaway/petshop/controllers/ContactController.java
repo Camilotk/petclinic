@@ -22,7 +22,7 @@ import br.com.metaway.petshop.repositories.dtos.ContactData;
 import br.com.metaway.petshop.services.ContactService;
 
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping("/v1/contacts")
 public class ContactController implements ContactDocumentation {
 	
 	@Autowired

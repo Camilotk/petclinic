@@ -14,7 +14,7 @@ import br.com.metaway.petshop.web.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController implements AuthenticationDocumentation {
 	

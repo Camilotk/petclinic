@@ -21,7 +21,7 @@ import br.com.metaway.petshop.models.Race;
 import br.com.metaway.petshop.services.RaceService;
 
 @RestController
-@RequestMapping("/races")
+@RequestMapping("/v1/races")
 public class RaceController implements RaceDocumentation {
 	
 	@Autowired

@@ -24,7 +24,7 @@ import br.com.metaway.petshop.services.VisitService;
 
 
 @RestController
-@RequestMapping("/visits")
+@RequestMapping("/v1/visits")
 public class VisitController implements VisitDocumentation {
 	
 	@Autowired

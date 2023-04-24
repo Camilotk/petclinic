@@ -23,7 +23,7 @@ import br.com.metaway.petshop.services.PetService;
 
 
 @RestController
-@RequestMapping("/pets")
+@RequestMapping("/v1/pets")
 public class PetController implements PetDocumentation {
 	@Autowired
 	private PetService service;
