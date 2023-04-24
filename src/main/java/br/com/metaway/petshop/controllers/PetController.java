@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.metaway.petshop.config.docs.PetDocumentation;
 import br.com.metaway.petshop.models.Pet;
 import br.com.metaway.petshop.repositories.dtos.PetData;
 import br.com.metaway.petshop.services.PetService;
@@ -23,7 +24,7 @@ import br.com.metaway.petshop.services.PetService;
 
 @RestController
 @RequestMapping("/pets")
-public class PetController {
+public class PetController implements PetDocumentation {
 	@Autowired
 	private PetService service;
 	
