@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.metaway.petshop.config.docs.AddressDocumentation;
 import br.com.metaway.petshop.models.Address;
 import br.com.metaway.petshop.services.AddressService;
 
 @RestController
 @RequestMapping("/addresses")
-public class AddressController {
+public class AddressController implements AddressDocumentation {
 	
 	@Autowired
 	private AddressService service;
