@@ -14,12 +14,15 @@ API em Spring Boot de um Sistema de Controle de atendimentos de petshops.
 
 ## Como rodar o projeto
 
-### Pré-requisitos
+### Executar o Projeto no Ambiente Local
+
+##### Pré-requisitos
 - Java 17 ou superior
 - Maven
 - PostgreSQL
+- Redis
 
-### Configuração
+##### Configuração
 Configurar as chaves de sistema:
 ```
 POSTGRES_HOST=
@@ -32,13 +35,15 @@ REDIS_PORT=
 JWT_SECRET=
 ```
 
-### Executar o Projeto
+##### Comando
+
 Após configurar as variavéis de ambiente, dentro do terminal bash rode:
 ```
 ./mvnw spring-boot:run
 ```
 
-#### Executar no Docker
+### Executar no Docker
+
 Rode o comando clean para remover qualquer build antiga.
 ```
 ./mvnw clean
