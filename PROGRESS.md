@@ -64,7 +64,7 @@
 - [x] Add better Exception Messages
 - [x] Add Swagger Documentation
 - [x] Add endpoint root in RootController to Swagger
-- [ ] Containerize in Docker
+- [x] Containerize in Docker
 - [ ] Configure Auth for USER and ADMIN roles
 - [ ] Deploy
 - [ ] Add Metrics to Deploy
