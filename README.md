@@ -35,6 +35,8 @@ REDIS_PORT=
 JWT_SECRET=
 ```
 
+> O valor de JWT_SECRET deve ter um tamanho maior que 256 bits.
+
 ##### Comando
 
 Após configurar as variavéis de ambiente, dentro do terminal bash rode:
