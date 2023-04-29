@@ -33,9 +33,23 @@ JWT_SECRET=
 ```
 
 ### Executar o Projeto
-Dentro do terminal bash rode
+Após configurar as variavéis de ambiente, dentro do terminal bash rode:
 ```
 ./mvnw spring-boot:run
+```
+
+#### Executar no Docker
+Rode o comando clean para remover qualquer build antiga.
+```
+./mvnw clean
+```
+Então rode o comando package para gerar um novo .jar do projeto.
+```
+./mvnw package
+```
+E por fim rode o docker-compose.
+```
+docker-compose up
 ```
 
 ### Executar os Testes
