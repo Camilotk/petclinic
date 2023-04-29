@@ -13,7 +13,7 @@ services:
       - POSTGRES_PASSWORD=mypassword
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - JWT_SECRET=myjwtsecret
+      - JWT_SECRET=2c941c22e7cb556c58ebdb2c6ced03df2f5218f94f5e2c55a92365c4393646fe
     depends_on:
       - postgres
     networks:
