@@ -57,7 +57,7 @@
 - [x] Unit Tests for Address
 - [x] Unit Tests for Pet
 - [x] Unit Tests for Contact
-- [ ] Unit Tests for Visit
+- [x] Unit Tests for Visit
 - [x] Add CI
 - [x] Add Caching for better usability
 - [x] Add pagination in JSON responses
