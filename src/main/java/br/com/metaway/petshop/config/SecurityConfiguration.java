@@ -25,11 +25,15 @@ public class SecurityConfiguration {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().authorizeHttpRequests()
-		        .requestMatchers(new OrRequestMatcher(new AntPathRequestMatcher("/"),
-		        									  new AntPathRequestMatcher("/v1/auth/**"), 
-		        		                              new AntPathRequestMatcher("/swagger-ui/**"),
-		        		                              new AntPathRequestMatcher("/v3/api-docs/**"))).permitAll()
-		        .anyRequest().authenticated().and()
+				.requestMatchers(new OrRequestMatcher(
+						new AntPathRequestMatcher("/"),
+						new AntPathRequestMatcher("/v1/auth/**"),
+						new AntPathRequestMatcher("/swagger-ui/**"),
+						new AntPathRequestMatcher("/v3/api-docs/**")
+				)).permitAll()
+				.requestMatchers(new AntPathRequestMatcher("/v1/pets/**")).hasAnyAuthority("USER", "ADMIN")
+				.anyRequest().hasAnyAuthority("ADMIN")
+				.and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // not hold state
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
