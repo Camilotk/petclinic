@@ -1,14 +1,19 @@
 package br.com.metaway.petshop.services;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.com.metaway.petshop.models.Client;
@@ -71,6 +76,31 @@ public class PetService {
 						   newPet.getBirthDate(),
 						   newPet.getRace().getId());
 	}
+	
+	private PetData convertToPetData(Pet pet) {
+        return new PetData(pet.getId(), pet.getName(), pet.getClient().getCpf(),
+                pet.getBirthDate(), pet.getRace().getId());
+    }
+	
+	public boolean containRole(String role) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		boolean hasUserRole = authentication.getAuthorities().stream()
+          .anyMatch(r -> r.getAuthority().equals(role));
+		
+		return hasUserRole;
+	}
+
+	@Cacheable(value = "petByCPF", key = "#cpf")
+	public Page<PetData> getPetsByClientCpf(String cpf, Pageable pageable) {
+        List<Pet> pets = repository.findAll();
+        
+        List<PetData> petDataList = pets.stream()
+            .filter(pet -> pet.getClient().getCpf().equals(cpf))
+            .map(this::convertToPetData)
+            .collect(Collectors.toList());
+        return new PageImpl<>(petDataList, pageable, petDataList.size());
+    }
 	
 	@Cacheable(value = "allPets") 
 	public Page<PetData> getAll(Pageable pageable) {
